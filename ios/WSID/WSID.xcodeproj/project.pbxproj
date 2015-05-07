@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D0A6940A1AF5359700FDA220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694091AF5359700FDA220 /* main.m */; };
+		D0A6940D1AF5359700FDA220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6940C1AF5359700FDA220 /* AppDelegate.m */; };
+		D0A694151AF5359700FDA220 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A694141AF5359700FDA220 /* Images.xcassets */; };
+		D0A694181AF5359700FDA220 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A694161AF5359700FDA220 /* LaunchScreen.xib */; };
+		D0A694241AF5359700FDA220 /* WSIDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694231AF5359700FDA220 /* WSIDTests.m */; };
+		D0A6942F1AF5367300FDA220 /* WSIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6942E1AF5367300FDA220 /* WSIDViewController.m */; };
+		D0A694331AF5384B00FDA220 /* WSIDTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694321AF5384B00FDA220 /* WSIDTask.m */; };
+		D0A6943F1AF53E3300FDA220 /* WSIDRecitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6943E1AF53E3300FDA220 /* WSIDRecitationViewController.m */; };
+		D0A694461AF53E5300FDA220 /* WSIDDictionaryTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694411AF53E5300FDA220 /* WSIDDictionaryTask.m */; };
+		D0A694471AF53E5300FDA220 /* WSIDLearningTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694431AF53E5300FDA220 /* WSIDLearningTask.m */; };
+		D0A694481AF53E5300FDA220 /* WSIDRecitationTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694451AF53E5300FDA220 /* WSIDRecitationTask.m */; };
+		D0A6944B1AF53E7900FDA220 /* WSIDDictionaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6944A1AF53E7900FDA220 /* WSIDDictionaryViewController.m */; };
+		D0A6944E1AF53E8A00FDA220 /* WSIDLearningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6944D1AF53E8A00FDA220 /* WSIDLearningViewController.m */; };
+		D0A694511AF53EAE00FDA220 /* WSIDTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694501AF53EAE00FDA220 /* WSIDTaskViewController.m */; };
+		D0A694541AF540E500FDA220 /* WSIDTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694531AF540E500FDA220 /* WSIDTaskManager.m */; };
+		D0A694571AF54D2A00FDA220 /* WSIDCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694561AF54D2A00FDA220 /* WSIDCreateViewController.m */; };
+		D0A6945A1AF54D3E00FDA220 /* WSIDManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694591AF54D3E00FDA220 /* WSIDManagerViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0A6941E1AF5359700FDA220 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0A693FC1AF5359700FDA220 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0A694031AF5359700FDA220;
+			remoteInfo = WSID;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D0A694041AF5359700FDA220 /* WSID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSID.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A694081AF5359700FDA220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0A694091AF5359700FDA220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0A6940B1AF5359700FDA220 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0A6940C1AF5359700FDA220 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D0A694141AF5359700FDA220 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D0A694171AF5359700FDA220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D0A6941D1AF5359700FDA220 /* WSIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WSIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0A694221AF5359700FDA220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0A694231AF5359700FDA220 /* WSIDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSIDTests.m; sourceTree = "<group>"; };
+		D0A6942D1AF5367300FDA220 /* WSIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDViewController.h; path = VC/WSIDViewController.h; sourceTree = "<group>"; };
+		D0A6942E1AF5367300FDA220 /* WSIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDViewController.m; path = VC/WSIDViewController.m; sourceTree = "<group>"; };
+		D0A694311AF5384B00FDA220 /* WSIDTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDTask.h; path = Tasks/WSIDTask.h; sourceTree = "<group>"; };
+		D0A694321AF5384B00FDA220 /* WSIDTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDTask.m; path = Tasks/WSIDTask.m; sourceTree = "<group>"; };
+		D0A6943D1AF53E3300FDA220 /* WSIDRecitationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDRecitationViewController.h; path = VC/WSIDRecitationViewController.h; sourceTree = "<group>"; };
+		D0A6943E1AF53E3300FDA220 /* WSIDRecitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDRecitationViewController.m; path = VC/WSIDRecitationViewController.m; sourceTree = "<group>"; };
+		D0A694401AF53E5300FDA220 /* WSIDDictionaryTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDDictionaryTask.h; path = Tasks/WSIDDictionaryTask.h; sourceTree = "<group>"; };
+		D0A694411AF53E5300FDA220 /* WSIDDictionaryTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDDictionaryTask.m; path = Tasks/WSIDDictionaryTask.m; sourceTree = "<group>"; };
+		D0A694421AF53E5300FDA220 /* WSIDLearningTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDLearningTask.h; path = Tasks/WSIDLearningTask.h; sourceTree = "<group>"; };
+		D0A694431AF53E5300FDA220 /* WSIDLearningTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDLearningTask.m; path = Tasks/WSIDLearningTask.m; sourceTree = "<group>"; };
+		D0A694441AF53E5300FDA220 /* WSIDRecitationTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDRecitationTask.h; path = Tasks/WSIDRecitationTask.h; sourceTree = "<group>"; };
+		D0A694451AF53E5300FDA220 /* WSIDRecitationTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDRecitationTask.m; path = Tasks/WSIDRecitationTask.m; sourceTree = "<group>"; };
+		D0A694491AF53E7900FDA220 /* WSIDDictionaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDDictionaryViewController.h; path = VC/WSIDDictionaryViewController.h; sourceTree = "<group>"; };
+		D0A6944A1AF53E7900FDA220 /* WSIDDictionaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDDictionaryViewController.m; path = VC/WSIDDictionaryViewController.m; sourceTree = "<group>"; };
+		D0A6944C1AF53E8A00FDA220 /* WSIDLearningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDLearningViewController.h; path = VC/WSIDLearningViewController.h; sourceTree = "<group>"; };
+		D0A6944D1AF53E8A00FDA220 /* WSIDLearningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDLearningViewController.m; path = VC/WSIDLearningViewController.m; sourceTree = "<group>"; };
+		D0A6944F1AF53EAE00FDA220 /* WSIDTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIDTaskViewController.h; sourceTree = "<group>"; };
+		D0A694501AF53EAE00FDA220 /* WSIDTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIDTaskViewController.m; sourceTree = "<group>"; };
+		D0A694521AF540E500FDA220 /* WSIDTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIDTaskManager.h; sourceTree = "<group>"; };
+		D0A694531AF540E500FDA220 /* WSIDTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIDTaskManager.m; sourceTree = "<group>"; };
+		D0A694551AF54D2A00FDA220 /* WSIDCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDCreateViewController.h; path = VC/WSIDCreateViewController.h; sourceTree = "<group>"; };
+		D0A694561AF54D2A00FDA220 /* WSIDCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDCreateViewController.m; path = VC/WSIDCreateViewController.m; sourceTree = "<group>"; };
+		D0A694581AF54D3E00FDA220 /* WSIDManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WSIDManagerViewController.h; path = VC/WSIDManagerViewController.h; sourceTree = "<group>"; };
+		D0A694591AF54D3E00FDA220 /* WSIDManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIDManagerViewController.m; path = VC/WSIDManagerViewController.m; sourceTree = "<group>"; };
+		D0A6945B1AF5F3BA00FDA220 /* Prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0A694011AF5359700FDA220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6941A1AF5359700FDA220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D0A693FB1AF5359700FDA220 = {
+			isa = PBXGroup;
+			children = (
+				D0A694061AF5359700FDA220 /* WSID */,
+				D0A694201AF5359700FDA220 /* WSIDTests */,
+				D0A694051AF5359700FDA220 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0A694051AF5359700FDA220 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0A694041AF5359700FDA220 /* WSID.app */,
+				D0A6941D1AF5359700FDA220 /* WSIDTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0A694061AF5359700FDA220 /* WSID */ = {
+			isa = PBXGroup;
+			children = (
+				D0A6940B1AF5359700FDA220 /* AppDelegate.h */,
+				D0A6940C1AF5359700FDA220 /* AppDelegate.m */,
+				D0A6942D1AF5367300FDA220 /* WSIDViewController.h */,
+				D0A6942E1AF5367300FDA220 /* WSIDViewController.m */,
+				D0A694551AF54D2A00FDA220 /* WSIDCreateViewController.h */,
+				D0A694561AF54D2A00FDA220 /* WSIDCreateViewController.m */,
+				D0A694581AF54D3E00FDA220 /* WSIDManagerViewController.h */,
+				D0A694591AF54D3E00FDA220 /* WSIDManagerViewController.m */,
+				D0A6944F1AF53EAE00FDA220 /* WSIDTaskViewController.h */,
+				D0A694501AF53EAE00FDA220 /* WSIDTaskViewController.m */,
+				D0A6943D1AF53E3300FDA220 /* WSIDRecitationViewController.h */,
+				D0A6943E1AF53E3300FDA220 /* WSIDRecitationViewController.m */,
+				D0A694491AF53E7900FDA220 /* WSIDDictionaryViewController.h */,
+				D0A6944A1AF53E7900FDA220 /* WSIDDictionaryViewController.m */,
+				D0A6944C1AF53E8A00FDA220 /* WSIDLearningViewController.h */,
+				D0A6944D1AF53E8A00FDA220 /* WSIDLearningViewController.m */,
+				D0A6945B1AF5F3BA00FDA220 /* Prefix.h */,
+				D0A694301AF5381F00FDA220 /* Tasks */,
+				D0A694141AF5359700FDA220 /* Images.xcassets */,
+				D0A694161AF5359700FDA220 /* LaunchScreen.xib */,
+				D0A694071AF5359700FDA220 /* Supporting Files */,
+			);
+			path = WSID;
+			sourceTree = "<group>";
+		};
+		D0A694071AF5359700FDA220 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0A694081AF5359700FDA220 /* Info.plist */,
+				D0A694091AF5359700FDA220 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0A694201AF5359700FDA220 /* WSIDTests */ = {
+			isa = PBXGroup;
+			children = (
+				D0A694231AF5359700FDA220 /* WSIDTests.m */,
+				D0A694211AF5359700FDA220 /* Supporting Files */,
+			);
+			path = WSIDTests;
+			sourceTree = "<group>";
+		};
+		D0A694211AF5359700FDA220 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D0A694221AF5359700FDA220 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0A694301AF5381F00FDA220 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				D0A694311AF5384B00FDA220 /* WSIDTask.h */,
+				D0A694321AF5384B00FDA220 /* WSIDTask.m */,
+				D0A694401AF53E5300FDA220 /* WSIDDictionaryTask.h */,
+				D0A694411AF53E5300FDA220 /* WSIDDictionaryTask.m */,
+				D0A694421AF53E5300FDA220 /* WSIDLearningTask.h */,
+				D0A694431AF53E5300FDA220 /* WSIDLearningTask.m */,
+				D0A694441AF53E5300FDA220 /* WSIDRecitationTask.h */,
+				D0A694451AF53E5300FDA220 /* WSIDRecitationTask.m */,
+				D0A694521AF540E500FDA220 /* WSIDTaskManager.h */,
+				D0A694531AF540E500FDA220 /* WSIDTaskManager.m */,
+			);
+			name = Tasks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0A694031AF5359700FDA220 /* WSID */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0A694271AF5359700FDA220 /* Build configuration list for PBXNativeTarget "WSID" */;
+			buildPhases = (
+				D0A694001AF5359700FDA220 /* Sources */,
+				D0A694011AF5359700FDA220 /* Frameworks */,
+				D0A694021AF5359700FDA220 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WSID;
+			productName = WSID;
+			productReference = D0A694041AF5359700FDA220 /* WSID.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D0A6941C1AF5359700FDA220 /* WSIDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0A6942A1AF5359700FDA220 /* Build configuration list for PBXNativeTarget "WSIDTests" */;
+			buildPhases = (
+				D0A694191AF5359700FDA220 /* Sources */,
+				D0A6941A1AF5359700FDA220 /* Frameworks */,
+				D0A6941B1AF5359700FDA220 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0A6941F1AF5359700FDA220 /* PBXTargetDependency */,
+			);
+			name = WSIDTests;
+			productName = WSIDTests;
+			productReference = D0A6941D1AF5359700FDA220 /* WSIDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0A693FC1AF5359700FDA220 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = sibinlu;
+				TargetAttributes = {
+					D0A694031AF5359700FDA220 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					D0A6941C1AF5359700FDA220 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = D0A694031AF5359700FDA220;
+					};
+				};
+			};
+			buildConfigurationList = D0A693FF1AF5359700FDA220 /* Build configuration list for PBXProject "WSID" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D0A693FB1AF5359700FDA220;
+			productRefGroup = D0A694051AF5359700FDA220 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0A694031AF5359700FDA220 /* WSID */,
+				D0A6941C1AF5359700FDA220 /* WSIDTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0A694021AF5359700FDA220 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A694181AF5359700FDA220 /* LaunchScreen.xib in Resources */,
+				D0A694151AF5359700FDA220 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A6941B1AF5359700FDA220 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0A694001AF5359700FDA220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A6940D1AF5359700FDA220 /* AppDelegate.m in Sources */,
+				D0A6945A1AF54D3E00FDA220 /* WSIDManagerViewController.m in Sources */,
+				D0A6943F1AF53E3300FDA220 /* WSIDRecitationViewController.m in Sources */,
+				D0A694471AF53E5300FDA220 /* WSIDLearningTask.m in Sources */,
+				D0A694481AF53E5300FDA220 /* WSIDRecitationTask.m in Sources */,
+				D0A6940A1AF5359700FDA220 /* main.m in Sources */,
+				D0A694511AF53EAE00FDA220 /* WSIDTaskViewController.m in Sources */,
+				D0A694461AF53E5300FDA220 /* WSIDDictionaryTask.m in Sources */,
+				D0A6942F1AF5367300FDA220 /* WSIDViewController.m in Sources */,
+				D0A6944E1AF53E8A00FDA220 /* WSIDLearningViewController.m in Sources */,
+				D0A694541AF540E500FDA220 /* WSIDTaskManager.m in Sources */,
+				D0A694331AF5384B00FDA220 /* WSIDTask.m in Sources */,
+				D0A694571AF54D2A00FDA220 /* WSIDCreateViewController.m in Sources */,
+				D0A6944B1AF53E7900FDA220 /* WSIDDictionaryViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A694191AF5359700FDA220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A694241AF5359700FDA220 /* WSIDTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0A6941F1AF5359700FDA220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0A694031AF5359700FDA220 /* WSID */;
+			targetProxy = D0A6941E1AF5359700FDA220 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D0A694161AF5359700FDA220 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0A694171AF5359700FDA220 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0A694251AF5359700FDA220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D0A694261AF5359700FDA220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0A694281AF5359700FDA220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WSID/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D0A694291AF5359700FDA220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WSID/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D0A6942B1AF5359700FDA220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WSIDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSID.app/WSID";
+			};
+			name = Debug;
+		};
+		D0A6942C1AF5359700FDA220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WSIDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WSID.app/WSID";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0A693FF1AF5359700FDA220 /* Build configuration list for PBXProject "WSID" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A694251AF5359700FDA220 /* Debug */,
+				D0A694261AF5359700FDA220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0A694271AF5359700FDA220 /* Build configuration list for PBXNativeTarget "WSID" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A694281AF5359700FDA220 /* Debug */,
+				D0A694291AF5359700FDA220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D0A6942A1AF5359700FDA220 /* Build configuration list for PBXNativeTarget "WSIDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0A6942B1AF5359700FDA220 /* Debug */,
+				D0A6942C1AF5359700FDA220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0A693FC1AF5359700FDA220 /* Project object */;
+}
