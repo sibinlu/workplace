@@ -1,0 +1,60 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+      }
+      h1{
+        font-family:"Microsoft YaHei", Tahoma, sans-serif;
+        font-size: 100%;
+        font-weight:bold;
+        font-style:italic;
+        color:#1010ac;
+      }
+      h2{
+        
+        font-family:"Microsoft YaHei", Tahoma, sans-serif;
+        font-size: 80%;
+      }
+      #event {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 500px;
+        min-width: 200px;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script type="text/javascript" src="getevent.js" charset="UTF-8"></script>
+    <!--script type="text/javascript">
+    function show()
+    {
+    alert("AA");
+    }
+    window.onload=show();
+    </script-->
+  </head>
+  <body>
+    <div id='body' width=500>
+      <div id="event">waiting</div>
+      <button onclick=gethtml()>Refresh</button>
+      <img id="image-result" hidden>
+    </div>
+  </body>
+</html>
+
