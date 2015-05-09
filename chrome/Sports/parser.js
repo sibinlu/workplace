@@ -35,6 +35,10 @@ function renderEvent(arr) {
 
 //x is the xml 
 function parserXML(x){
+
+  if(!x){
+    console.log("not valid xml input");
+  }
   l = x.getElementById('left');
   boxes = l.getElementsByClassName('box');
     
@@ -82,6 +86,10 @@ function saveCache(arr){
 
 function showCache(){
   var arr = $.jStorage.get('cache');
+  if(!arr){
+    console.log('cache in null');
+    return;
+  }
   console.log('cache load successfully');
   renderEvent(arr);
 }

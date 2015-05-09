@@ -6,7 +6,10 @@ function gethtml(){
     console.log('Get Html Success');
     
     parserXML(x);
-  }
+  };
+  xhr.onerror = function(){
+    console.log("fail get html");
+  };
   xhr.open("GET", url);
   xhr.setRequestHeader("Access-Control-Allow-Origin", "*"); 
   xhr.responseType = "document";

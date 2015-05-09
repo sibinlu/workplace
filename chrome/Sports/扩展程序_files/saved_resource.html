@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)chrome://extensions-frame/ -->
+<html i18n-values="dir:textdirection;lang:language" class="focus-outline-visible" dir="ltr" lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+html.loading * {
+  transition-duration: 0ms !important;
+}
+
+html:not(.focus-outline-visible)
+:enabled:focus:-webkit-any(input[type='checkbox'], input[type='radio']) {
+  /* Cancel border-color for :focus specified in widgets.css. */
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+#extension-settings.showing-banner {
+  margin-top: 45px;
+}
+
+/* Developer mode */
+
+#dev-controls {
+  -webkit-margin-end: 20px;
+  height: 0;
+  overflow: hidden;
+}
+
+#dev-controls.animated {
+  transition: height 150ms;
+}
+
+.dev-mode #dev-controls {
+  border-bottom: 1px solid #eee;
+}
+
+#dev-controls > * {
+  padding: 8px 3px;
+}
+
+#dev-controls .button-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#dev-controls button {
+  white-space: nowrap;
+}
+
+#dev-controls .button-container button:not(:last-of-type) {
+  -webkit-margin-end: 5px;
+}
+
+#apps-developer-tools-promo {
+  align-items: center;
+  border-top: 1px solid #eee;
+  display: flex;
+  font-size: 13px;
+}
+
+#apps-developer-tools-promo img {
+  -webkit-margin-end: 5px;
+  -webkit-margin-start: -5px;
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAtFBMVEUAAABVVVVVVVVeXl5VVVVUVFRYWFhZWVleXl5WVlZdXV1VVVVUVFRWVlbGxsZXV1dWVlZYWFhVVVVMTExJSUnHx8dISEhSUlLU1NRTU1NaWlpUVFTDTELoTUBZWVmzSD/IyMi8tLPJycldXV3jSz7HQjdKSkpRUVFeXl5mZmbR0dHExMTQRTmySD57e3tqamppaWlLS0uxqahbW1uyqam6PjNQUFBfX19cXFy0SUDETUN+fn7gTjmxAAAADnRSTlMABu7t7ZGR7pDtkZCJiNSgNUkAAAFFSURBVHhe7c/VbsQwEIbRZqFcUxiXeYsM7/9e9ajKbJ2M7OZ+v7tI/xk5J//vmHfZX0Oz3z6gZyjTVbqzU88A52tyn9V7KeWNAfrW87CXFwawn4c4N4DrPOcN4DqvEwZwnufCBM7zogVw/j1OsPFdfb4N8PwuZFi4w3kD/Hl9yN7r189YiHulGgBfz9jh9YzV51ULwPpzTzZSUAPAeT4vyeZxG8A+EyU2SZLJQawIAK8XXwimm80UQUGBDMCb7/uPuuWSBQELoCiKAp94EuwrPtrXAcCP25QCVVWJw0+z+wdm/WnYV3mJPW23L9afhr1EgNmAlN2A1KUaLF4bLWgAe94NcA6AigZcF3d4EuxFNyAEACoaCAAFDQoCCCj1g4go8GMaqDxekcU5CZQlAijVDQzcYGCAKze4NoA37NlBb+ghcHbsB6kLk+2ED2pCAAAAAElFTkSuQmCC);
+  margin-bottom: -5px;
+  margin-top: -5px;
+}
+
+#apps-developer-tools-promo-close-wrapper {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+#apps-developer-tools-promo .close-button {
+  background: -webkit-image-set(url(chrome://theme/IDR_CLOSE_DIALOG) 1x, url(chrome://theme/IDR_CLOSE_DIALOG@2x) 2x) no-repeat center center;
+  border: 0;
+  height: 14px;
+  width: 14px;
+  z-index: 1;
+}
+
+#apps-developer-tools-promo .close-button:hover {
+  background-image: -webkit-image-set(url(chrome://theme/IDR_CLOSE_DIALOG_H) 1x, url(chrome://theme/IDR_CLOSE_DIALOG_H@2x) 2x);
+}
+
+#apps-developer-tools-promo .close-button:active {
+  background-image: -webkit-image-set(url(chrome://theme/IDR_CLOSE_DIALOG_P) 1x, url(chrome://theme/IDR_CLOSE_DIALOG_P@2x) 2x);
+}
+
+#dev-controls-spacer {
+  flex: 1;
+}
+
+#dev-toggle {
+  margin-top: 0;
+  text-align: end;
+}
+
+.extension-code {
+  border: 1px solid #ccc;
+  display: flex;
+  font-family: monospace;
+  overflow: auto;
+  white-space: pre;
+}
+
+.extension-code > * {
+  padding: 3px;
+}
+
+.extension-code-line-numbers {
+  align-self: flex-start;
+  background-color: rgba(240, 240, 240, 1);
+  border-right: 1px solid #ccc;
+  color: rgba(128, 128, 128, 1);
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.developer-extras > div,
+.permanent-warnings > div {
+  margin: 5px 0;
+}
+
+#extension-settings #page-header {
+  /* These values match the .page values. */
+  -webkit-margin-end: 24px;
+  min-width: 576px;
+}
+
+/* Contents */
+
+#extension-settings {
+  max-width: 738px;
+}
+
+#no-extensions-message {
+  font-weight: bold;
+}
+
+#suggest-gallery {
+  -webkit-padding-start: 10px;
+}
+
+#footer-section {
+  background: -webkit-image-set(url(chrome://theme/IDR_WEBSTORE_ICON_32) 1x, url(chrome://theme/IDR_WEBSTORE_ICON_32@2x) 2x) no-repeat left center;
+  background-size: 32px 32px;
+  font-size: 1.25em;
+}
+
+html[dir=rtl] #footer-section {
+  background: -webkit-image-set(url(chrome://theme/IDR_WEBSTORE_ICON_32) 1x, url(chrome://theme/IDR_WEBSTORE_ICON_32@2x) 2x) no-repeat right center;
+}
+
+#footer-section > a {
+  -webkit-margin-start: 42px;
+  line-height: 32px;
+}
+
+.empty-extension-list {
+  height: 3em;
+}
+
+.loading #no-extensions,
+.loading #footer-section,
+#extension-settings-list:not(.empty-extension-list) ~ #no-extensions,
+.empty-extension-list ~ #footer-section {
+  display: none;
+}
+
+.extension-list-item-wrapper {
+  margin: 23px 0;
+}
+
+.extension-list-item {
+  background-repeat: no-repeat;
+  display: -webkit-box;
+  min-height: 48px;
+}
+
+.extension-list-item a {
+  -webkit-margin-start: 0.5em;
+  display: inline-block;
+}
+
+html[dir='rtl'] .extension-list-item {
+  background-position: right;
+}
+
+.extension-title {
+  -webkit-padding-end: 20px;
+  color: rgb(48, 57, 66);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.inactive-extension .extension-title {
+  color: inherit;
+}
+
+.extension-version {
+  -webkit-padding-end: 7px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.extension-description,
+.corrupt-install-message {
+  -webkit-padding-end: 5px;
+  font-size: 13px;
+  margin: 5px 0;
+  white-space: normal;
+}
+
+.corrupt-install-message {
+  color: rgb(196, 42, 23);
+}
+
+.action-links {
+  margin-bottom: 0.5em;
+}
+
+.action-links a {
+  -webkit-margin-end: 1em;
+  -webkit-margin-start: 0;
+}
+
+.extension-details {
+  -webkit-box-flex: 1;
+  -webkit-padding-end: 7px;
+  -webkit-padding-start: 55px;
+}
+
+.extension-description,
+.extension-version,
+.extension-list-item-wrapper.inactive-extension .extension-details,
+.location-text,
+.blacklist-text,
+.enable-checkbox input:disabled + .enable-checkbox-text {
+  color: rgb(115, 119, 122);
+}
+
+.enable-controls {
+  /* Matches right: position of dev controls toggle. */
+  -webkit-margin-end: 20px;
+  position: relative;
+}
+
+/* We use x[is='action-link'] here so that we get higher specifity than the
+ * action link rules without resorting to the Dark Side (!IMPORTANT). */
+.terminated-reload-link[is='action-link'],
+.corrupted-repair-button[is='action-link'] {
+  /* Matches width of trash. */
+  -webkit-margin-end: 30px;
+}
+
+.checkbox {
+  display: inline-block;
+}
+
+.enabled-text {
+  font-weight: bold;
+}
+
+.extension-list-item-wrapper.inactive-extension .enabled-text,
+.extension-list-item-wrapper:not(.inactive-extension) .enable-text,
+.extension-list-item-wrapper.inactive-extension .optional-controls,
+.extension-list-item-wrapper.inactive-extension .butter-bar {
+  display: none;
+}
+
+.load-path > span {
+  word-wrap: break-word;
+}
+
+.terminated-reload-link,
+.corrupted-repair-button {
+  display: inline-block;
+  padding-top: 7px;
+}
+
+.install-warnings a {
+  -webkit-margin-start: 0;
+}
+
+.butter-bar,
+.install-warnings,
+.extension-warnings {
+  border-radius: 3px;
+  margin-top: 5px;
+  padding: 2px 5px;
+}
+
+.butter-bar {
+  background: rgb(255, 242, 153);
+}
+
+.install-warnings,
+.extension-warnings {
+  background: pink;
+}
+
+.install-warnings ul,
+.extension-warnings ul {
+  margin: 0;
+}
+
+.error-collection-control {
+  -webkit-margin-start: 5px;
+}
+
+#extension-settings:not(.dev-mode) .developer-extras,
+#extension-settings:not(.dev-mode) .error-collection-control {
+  display: none;
+}
+
+#font-measuring-div {
+  /* Remove from the flow and hide. */
+  position: absolute;
+  visibility: hidden;
+}
+
+.extension-commands-config {
+  float: right;
+}
+
+html[dir=rtl] .extension-commands-config {
+  float: left;
+}
+
+/* Overlays */
+
+#overlay {
+  z-index: 5;
+}
+
+#overlay .page:not(.showing) {
+  display: none;
+}
+
+#drop-target-overlay {
+  color: rgb(48, 57, 66);
+  font-size: 18px;
+  text-align: center;
+}
+
+#drop-target-overlay div {
+  margin: 1em;
+}
+
+.location-text,
+.blacklist-text {
+  display: block;
+  width: 100px;
+}
+
+/* Trash */
+
+#extension-settings .trash {
+  height: 22px;
+  opacity: 0.8;
+  position: relative;
+  right: 0;
+  top: 6px;
+  transition: opacity 200ms;
+}
+
+html[dir='rtl'] #extension-settings .trash {
+  left: 0;
+  right: auto;
+}
+
+.extension-list-item:not(:hover) .trash:not(:focus) {
+  opacity: 0;
+}
+
+.extension-list-item-wrapper.may-not-remove .trash {
+  visibility: hidden;
+}
+
+/* In case the extension is policy controlled the trash icon must be hidden by
+ * setting display:none rather than only setting visibility:hidden to completely
+ * remove it from the layout and make space for the controlled indicator.
+ * TODO(cschuet): rather than hide always replace it with something meaningful.
+ */
+.extension-list-item-wrapper.policy-controlled .trash {
+  display: none;
+}
+
+.extension-highlight {
+  background: rgb(250, 250, 250);
+  border-radius: 3px;
+  padding: 5px 0 5px 5px;
+}
+
+/* Supervised users */
+
+.page:not(.profile-is-supervised) .profile-is-supervised-banner,
+.profile-is-supervised .more-extensions-link {
+  display: none;
+}
+
+.profile-is-supervised-banner .page-banner-text {
+  background-image: -webkit-image-set(url(chrome://theme/IDR_WARNING) 1x, url(chrome://theme/IDR_WARNING@2x) 2x);
+}
+
+/* Sideload Wipeout */
+
+.sideload-wipeout-learn-more {
+  text-decoration: none;
+}
+
+.sideload-wipeout-banner .page-banner-text {
+  -webkit-padding-start: 8px;
+  background-image: none;
+}
+</style>
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.extension-command-list-command-item-wrapper {
+  margin-left: 12px;
+}
+
+.command-title {
+  display: inline-block;
+  margin-top: 1em;
+}
+
+.command-container {
+  -webkit-box-orient: horizontal;
+  display: -webkit-box;
+  width: 450px;
+}
+
+.command-description {
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+  margin-top: 0.5em;
+  min-height: 2em;
+}
+
+.command-shortcut-container {
+  display: -webkit-box;
+  margin-top: 0.25em;
+  min-height: 2em;
+}
+
+.command-shortcut {
+  border: solid 1px #BFBFBF;
+  border-radius: 2px;
+  color: rgb(48, 57, 66);
+  display: inline-block;
+  height: 1.4em;
+  min-width: 12.5em;
+  padding: 3px 0 1px 4px;
+}
+
+.command-shortcut-text {
+  display: inline-block;
+  height: 1.4em;
+  min-width: 11em;
+  outline: none;
+}
+
+.focused {
+  border: solid 1px rgb(140, 147, 255);
+}
+
+.clearable {
+  background: white;
+}
+
+.command-clear {
+  float: right;
+  margin-top: 1px;
+}
+
+.command-scope {
+  margin-left: 0.25em;
+  margin-top: 0.24em;
+}
+
+.capturing {
+  background: rgb(243, 244, 255);
+  border: solid 1px rgb(140, 147, 255);
+  color: #999;
+}
+
+.contains-chars {
+  color: rgb(48, 57, 66);
+}
+
+.inactive-keybinding {
+  color: #999;
+}
+</style>
+<style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.extension-error-list a {
+  cursor: pointer;
+}
+
+.extension-error-list-contents {
+  -webkit-transition: max-height 150ms;
+  list-style-type: none;
+  overflow-y: hidden;
+}
+
+.extension-error-list-contents.active {
+  max-height: 200px;
+}
+
+.extension-error-list-contents,
+.extension-error-list-contents.deactivating {
+  /* Simply toggling .active on and off doesn't transition both ways as it
+   * changes the display type of some li elements. To fix this, .deactivating
+   * is added while the list is closing to change only the max-height. */
+  max-height: 50px;
+}
+
+.extension-error-list-contents.scrollable {
+  overflow-y: auto;
+}
+
+/* These next three rules hide all except for the most recent three entries in
+ * the list, unless the list is active. */
+.extension-error-list-contents li {
+  display: none;
+}
+.extension-error-list-contents.active li,
+.extension-error-list ul li:nth-last-child(-n + 3) {
+  display: initial;
+}
+
+.extension-error-list-contents {
+  -webkit-padding-start: 20px;
+}
+
+.extension-error-list-show-more {
+  text-align: center;
+  width: 100%;
+}
+
+.extension-error-list-show-more button {
+  width: auto;
+}
+
+.extension-error-metadata {
+  -webkit-padding-end: 1px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1px;
+  margin-top: 1px;
+}
+
+.extension-error-icon {
+  -webkit-margin-end: 3px;
+  -webkit-margin-start: 3px;
+  height: 15px;
+  vertical-align: middle;
+  width: 15px;
+}
+
+.extension-error-message {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.extension-error-severity-info .extension-error-message {
+  color: #333;
+}
+.extension-error-severity-info .extension-error-icon {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAQAAADYWf5HAAAA+ElEQVR4XrXSzUrDQBSG4fEC1ICtvQL/aNGFG+k9iQTppTmvIbEiQooLNyoqiAU3CrELsev0M4McRiq66/kWh4GHMwxn3KIK5x2r9Dig23THb0JIm5SSik8qSlJac9QHtEVGjSzUwIZBm7VOZiCL1NMiIhzHzBAq9KixHlTYxCMcxkgoEfK61ZOGem66/4aXrETWpUIh58pFQ2+MvbEdWZ8pstxprNxOH+xHtsfEUKEXDeWNvbIZWcLIWK7rn2+9YDkyx4AZCjnTfbyy5hAXmMEOuU04FZYT1phb1Q7F/1sw2GHAFe9MmTAipf3X+pdI6NFn137IYuoLMoYsiY7+iqwAAAAASUVORK5CYII=);
+}
+
+.extension-error-severity-warning .extension-error-message {
+  color: rgba(250, 145, 0, 255);
+}
+.extension-error-severity-warning .extension-error-icon {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAvUlEQVQ4y2P4//8/A7Uww9Aw7ON0BmRsA8TLgfgJEP+E0suh4nB1hAxjAeKpQPwfDwbJsxJj2Gxkjd/2lfz//+/v/2978tENnE3IMGt0V3w/2fcfBEA0Fhda4zNsGYmGLcdn2AsSDXuKz7D/JBr2kySXfd0a///f1zdgmlSXLcfQMJPz/5dNoWCa1DCzQdfw7XAD2JvfDjdiM8yGUDqbgpHOQIZhprMpxCRaVmrmAPS8+RSaN5+SlDeHb3kGAKOZ21Ac7RS6AAAAAElFTkSuQmCC);
+}
+
+.extension-error-severity-fatal .extension-error-message {
+  color: rgba(200, 50, 50, 255);
+}
+.extension-error-severity-fatal .extension-error-icon {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAApElEQVQ4y2P4//8/A7Uww9Aw7LyrFjK2AeLlQPwEiH9C6eVQcbg6QoaxAPFUIP6PB4PkWYkxbDYBg2B4NiHDrGGK3+za/P/V+uUoBoD4IHEkMWt8hi1D1ggCMAPR+VC8HJ9hL9BdAgJfb9/AZhAIP8VnGEbYwAwC0Vjkf9LNZcupGWY2JMamDaF0NoXIdDaFmETLSs0cgJ43n0Lz5lOS8ubwLc8Awoi9SpKSLkQAAAAASUVORK5CYII=);
+}
+</style>
+<style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#extension-error-overlay {
+  max-width: 100%;
+}
+
+#extension-error-overlay .content-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.extension-error-overlay-runtime-content {
+  flex: none;
+}
+
+#extension-error-overlay .extension-code-highlighted-source {
+  background-color: rgba(255, 195, 200, 255);
+}
+
+#extension-error-overlay-code {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+#extension-error-overlay .extension-code-source {
+  color: #555;
+}
+
+.extension-error-overlay-context {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.extension-error-overlay-stack-trace-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.extension-error-overlay-stack-trace summary {
+  cursor: pointer;
+  font-size: 1.1em;
+  outline: none;
+}
+
+.extension-error-overlay-stack-trace summary::-webkit-details-marker {
+  font-size: 1em;
+}
+
+.extension-error-overlay-stack-trace-list li {
+  -webkit-padding-start: 10px;
+  background-color: white;
+  cursor: pointer;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+.extension-error-overlay-stack-trace-list li:hover {
+  background-color: #eee;
+}
+
+.extension-error-overlay-stack-trace-list li.extension-error-active {
+  background-color: rgba(0, 100, 255, 0.1);
+}
+</style>
+<style>/* Copyright 2014 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#extension-load-error {
+  -webkit-margin-end: 20px;
+  -webkit-padding-end: 3px;
+  -webkit-padding-start: 10px;
+  background-color: rgba(255, 249, 221, 1);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1em;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+#extension-load-error h2 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#extension-load-error-message {
+  margin-top: 5px;
+}
+
+#extension-load-error-manifest {
+  background-color: rgba(255, 250, 240, 1);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  max-height: 100px;
+}
+
+#extension-load-error-manifest .extension-code-highlighted-source {
+  background-color: pink;
+}
+
+#extension-load-error-controls {
+  align-self: flex-end;
+}
+
+#extension-load-error-additional > span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#extension-load-error-additional > li {
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+</style>
+<style>/* Copyright 2014 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#extension-options-overlay {
+  overflow: hidden;
+}
+
+#extension-options-overlay-header {
+  align-items: center;
+  border-bottom: solid lightgray 1px;
+  display: flex;
+  position: relative;
+}
+
+#extension-options-overlay-icon {
+  padding: 8px;
+}
+
+#extension-options-overlay-icon {
+  height: 32px;
+  width: 32px;
+}
+
+#extension-options-overlay-title {
+  /* Cancel left padding to line up with the icon. */
+  padding-left: 0;
+}
+</style>
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+.pack-extension-heading {
+  padding-bottom: 5px;
+  width: 520px;
+}
+
+.pack-extension-text-boxes {
+  text-align: right;
+}
+
+.pack-extension-text-area {
+  width: 260px;
+}
+
+
+</style>
+<link rel="stylesheet" href="chrome://resources/css/alert_overlay.css">
+<link rel="stylesheet" href="chrome://resources/css/bubble.css">
+<link rel="stylesheet" href="chrome://resources/css/bubble_button.css">
+<link rel="stylesheet" href="chrome://resources/css/controlled_indicator.css">
+<link rel="stylesheet" href="chrome://resources/css/chrome_shared.css">
+<link rel="stylesheet" href="chrome://resources/css/overlay.css">
+<link rel="stylesheet" href="chrome://resources/css/trash.css">
+<style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+body {
+  -webkit-margin-start: 23px;
+  color: rgb(48, 57, 66);
+}
+
+body.uber-frame {
+  -webkit-margin-start: 155px;
+}
+
+html[dir='rtl'] body.uber-frame {
+  /* Enable vertical scrollbar at all times in RTL to avoid visual glitches when
+   * showing sub-pages that vertically overflow. */
+  overflow-y: scroll;
+}
+
+/* TODO(dbeam): Remove .page class from overlays in settings so the junk below
+ * isn't necessary. */
+body #extension-settings.page,
+body #mainview-content .page,
+body .subpage-sheet-container .page,
+body > .page {
+  -webkit-margin-end: 24px;
+  min-width: 576px;
+  padding-bottom: 20px;
+  padding-top: 55px;
+}
+
+body header {
+  background-image: -webkit-linear-gradient(white,
+                                            white 40%,
+                                            rgba(255, 255, 255, 0.92));
+  left: 23px;
+  /* <section>s in options currently amount to 638px total, broken up into
+   * 600px max-width + 18px -webkit-padding-start + 20px -webkit-margin-end
+   * so we mirror this value here so the headers match width and horizontal
+   * alignment when scrolling sideways.
+   * other-devices.css' .device width depends on this, please keep in sync.
+   */
+  max-width: 738px;
+  min-width: 600px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  /* list.css sets a z-index of up to 2, this is set to 3 to ensure that the
+   * header is in front of the selected list item. */
+  z-index: 3;
+}
+
+body.uber-frame header {
+  left: 155px;
+}
+
+html[dir='rtl'] body header {
+  left: 0;
+  right: 23px;
+}
+
+html[dir='rtl'] body.uber-frame header {
+  right: 155px;
+}
+
+body header > .search-field-container,
+body header > .header-extras,
+body header > button {
+  position: absolute;
+  right: 20px;
+  top: 21px;
+}
+
+html[dir='rtl'] body header > .search-field-container,
+html[dir='rtl'] body header > .header-extras,
+html[dir='rtl'] body header > button {
+  left: 20px;
+  right: auto;
+}
+
+body header input[type='search'],
+body header input[type='text'],
+body header button {
+  margin: 0;
+}
+
+body header > h1 {
+  margin: 0;
+  padding: 21px 0 13px;
+}
+
+/* Create a border under the h1 (but before anything that gets appended
+ * to the end of the header). */
+body header > h1::after {
+  -webkit-margin-end: 20px;
+  background-color: #eee;
+  content: ' ';
+  display: block;
+  height: 1px;
+  position: relative;
+  top: 13px;
+}
+
+body footer {
+  border-top: 1px solid #eee;
+  margin-top: 16px;
+  /* min-width and max-width should match the header */
+  max-width: 638px;
+  min-width: 600px;
+  padding: 8px 0;
+}
+
+/* Sections are used in options pages, help page and history page. This defines
+ * the section metrics to match the header metrics above. */
+body section {
+  -webkit-padding-start: 18px;
+  margin-bottom: 24px;
+  margin-top: 8px;
+  max-width: 600px;
+}
+
+body section:last-of-type {
+  margin-bottom: 0;
+}
+
+body section > h3 {
+  -webkit-margin-start: -18px;
+}
+
+body section > div:only-of-type {
+  -webkit-box-flex: 1;
+}
+
+body .section-header {
+  -webkit-margin-start: -18px;
+  margin-bottom: 0.8em;
+  margin-top: 1.2em;
+}
+
+body .section-header > h3 {
+  display: inline;
+}
+
+/* Styles for a hideable notification banner at the top of a page. */
+.page.showing-banner {
+  margin-top: 45px;
+}
+
+.page-banner {
+  background-color: white;
+  width: 100%;
+  z-index: 2;
+}
+
+.page:not(.showing-banner) .page-banner {
+  display: none;
+}
+
+.page-banner-gradient {
+  background: -webkit-linear-gradient(rgb(255, 242, 183),
+                                      rgb(250, 230, 145));
+  border: 1px solid rgb(201, 189, 141);
+  border-radius: 3px;
+  margin: 9px 9px 0 9px;
+  min-height: 25px;
+}
+
+.page-banner .page-banner-gradient {
+  -webkit-margin-end: 20px;
+  -webkit-margin-start: 0;
+  margin-bottom: 9px;
+}
+
+.page-banner-text {
+  -webkit-padding-end: 8px;
+  -webkit-padding-start: 26px;
+  background-image: -webkit-image-set(url(chrome://theme/IDR_CONTROLLED_SETTING_MANDATORY) 1x, url(chrome://theme/IDR_CONTROLLED_SETTING_MANDATORY@2x) 2x);
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  display: block;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.page-banner.clickable:active .page-banner-text {
+  background: -webkit-linear-gradient(rgb(250, 230, 145),
+                                      rgb(255, 242, 183));
+}
+</style>
+
+<script src="chrome://resources/js/action_link.js"></script>
+<script src="chrome://resources/js/cr.js"></script>
+<script src="chrome://resources/js/event_tracker.js"></script>
+<script src="chrome://resources/js/load_time_data.js"></script>
+<script src="chrome://resources/js/util.js"></script>
+<script src="chrome://resources/js/cr/ui.js"></script>
+<script src="chrome://resources/js/cr/ui/alert_overlay.js"></script>
+<script src="chrome://resources/js/cr/ui/bubble.js"></script>
+<script src="chrome://resources/js/cr/ui/bubble_button.js"></script>
+<script src="chrome://resources/js/cr/ui/controlled_indicator.js"></script>
+<script src="chrome://resources/js/cr/ui/drag_wrapper.js"></script>
+<script src="chrome://resources/js/cr/ui/focus_manager.js"></script>
+<script src="chrome://resources/js/cr/ui/focus_outline_manager.js"></script>
+<script src="chrome://resources/js/cr/ui/node_utils.js"></script>
+<script src="chrome://resources/js/cr/ui/overlay.js"></script>
+
+
+
+<script src="chrome://extensions-frame/extensions.js"></script>
+<style type="text/css">.enable-checkbox-text {  min-width: 36px;}#dev-toggle span {  min-width: 66px;}</style><title>扩展程序</title></head>
+
+<body class="uber-frame">
+
+<div id="overlay" class="overlay" hidden="">
+  <!--
+ * Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found
+ * in the LICENSE file.
+-->
+<div id="extension-commands-overlay" class="page" style="max-height: 640px;">
+  <div class="close-button"></div>
+  <h1 i18n-content="extensionCommandsOverlay">扩展程序和应用的键盘快捷键</h1>
+  <div class="content-area">
+    <div id="extension-command-list" class=""><div class="extension-command-list-extension-item-wrapper">
+    <div class="extension-command-list-extension-item">
+      <div class="extension-command-extension-details">
+        <div>
+          <span class="extension-title command-title">AdBlock</span>
+          <div class="command-details"></div>
+        </div>
+      </div>
+    </div>
+  </div><div class="extension-command-list-command-item-wrapper" id="command-gighmmpiobklfepjocnamgkkbiglidom-_execute_browser_action">
+    <div class="extension-command-list-command-item">
+      <div class="extension-command-details">
+        <div class="command-container">
+          <span class="command-description">激活该扩展程序</span>
+          <span class="command-shortcut-container"><span class="command-shortcut clearable inactive-keybinding"><img class="command-clear" src="chrome://theme/IDR_EXTENSION_COMMAND_CLOSE" style="content: -webkit-image-set(url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE&#39;) 1x, url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE@2x&#39;) 2x);" id="clear-gighmmpiobklfepjocnamgkkbiglidom-_execute_browser_action" title="删除快捷方式"><span class="command-shortcut-text" tabindex="0">未设置</span></span></span>
+          <select class="command-scope" id="setCommandScope-gighmmpiobklfepjocnamgkkbiglidom-_execute_browser_action" disabled=""><option>在 Chrome 中</option></select>
+        </div>
+      </div>
+    </div>
+  </div><div class="extension-command-list-extension-item-wrapper">
+    <div class="extension-command-list-extension-item">
+      <div class="extension-command-extension-details">
+        <div>
+          <span class="extension-title command-title">Bookmark Manager</span>
+          <div class="command-details"></div>
+        </div>
+      </div>
+    </div>
+  </div><div class="extension-command-list-command-item-wrapper" id="command-gmlllbghnfkpflemihljekbapjopfjik-_execute_page_action">
+    <div class="extension-command-list-command-item">
+      <div class="extension-command-details">
+        <div class="command-container">
+          <span class="command-description">激活该扩展程序</span>
+          <span class="command-shortcut-container"><span class="command-shortcut clearable"><img class="command-clear" src="chrome://theme/IDR_EXTENSION_COMMAND_CLOSE" style="content: -webkit-image-set(url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE&#39;) 1x, url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE@2x&#39;) 2x);" id="clear-gmlllbghnfkpflemihljekbapjopfjik-_execute_page_action" title="删除快捷方式"><span class="command-shortcut-text" tabindex="0">命令键 + D</span></span></span>
+          <select class="command-scope" id="setCommandScope-gmlllbghnfkpflemihljekbapjopfjik-_execute_page_action" disabled=""><option>在 Chrome 中</option></select>
+        </div>
+      </div>
+    </div>
+  </div><div class="extension-command-list-extension-item-wrapper">
+    <div class="extension-command-list-extension-item">
+      <div class="extension-command-extension-details">
+        <div>
+          <span class="extension-title command-title">Sport Event</span>
+          <div class="command-details"></div>
+        </div>
+      </div>
+    </div>
+  </div><div class="extension-command-list-command-item-wrapper" id="command-ojijgddpmgblpahocddllbdcabnpaphk-_execute_browser_action">
+    <div class="extension-command-list-command-item">
+      <div class="extension-command-details">
+        <div class="command-container">
+          <span class="command-description">激活该扩展程序</span>
+          <span class="command-shortcut-container"><span class="command-shortcut clearable inactive-keybinding"><img class="command-clear" src="chrome://theme/IDR_EXTENSION_COMMAND_CLOSE" style="content: -webkit-image-set(url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE&#39;) 1x, url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE@2x&#39;) 2x);" id="clear-ojijgddpmgblpahocddllbdcabnpaphk-_execute_browser_action" title="删除快捷方式"><span class="command-shortcut-text" tabindex="0">未设置</span></span></span>
+          <select class="command-scope" id="setCommandScope-ojijgddpmgblpahocddllbdcabnpaphk-_execute_browser_action" disabled=""><option>在 Chrome 中</option></select>
+        </div>
+      </div>
+    </div>
+  </div></div>
+    <div id="no-commands" hidden="">
+      <span id="no-extensions-commands-message" i18n-content="extensionCommandsEmpty">尚未为任何扩展程序分配键盘快捷键。</span>
+    </div>
+  </div>
+  <div class="action-area">
+    <div class="action-area-right">
+      <div class="button-strip">
+        <button id="extension-commands-dismiss" i18n-content="ok">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="template-collection-extension-commands" hidden="">
+  <div class="extension-command-list-extension-item-wrapper">
+    <div class="extension-command-list-extension-item">
+      <div class="extension-command-extension-details">
+        <div>
+          <span class="extension-title command-title"></span>
+          <div class="command-details"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="extension-command-list-command-item-wrapper">
+    <div class="extension-command-list-command-item">
+      <div class="extension-command-details">
+        <div class="command-container">
+          <span class="command-description"></span>
+          <span class="command-shortcut-container"><span class="command-shortcut clearable"><img class="command-clear" src="chrome://theme/IDR_EXTENSION_COMMAND_CLOSE" style="content: -webkit-image-set(url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE&#39;) 1x, url(&#39;chrome://theme/IDR_EXTENSION_COMMAND_CLOSE@2x&#39;) 2x);"><span class="command-shortcut-text" tabindex="0"></span></span></span>
+          <select class="command-scope" hidden=""></select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--
+Copyright 2013 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be found
+in the LICENSE file.
+-->
+
+<div id="template-collection-extension-error-overlay" hidden="">
+  <div class="extension-error-overlay-runtime-content">
+    <div class="extension-error-overlay-context">
+      <span i18n-content="extensionErrorOverlayContextUrl">具体情况：</span>
+      <span class="extension-error-overlay-context-url"></span>
+    </div>
+    <details class="extension-error-overlay-stack-trace">
+      <summary i18n-content="extensionErrorOverlayStackTrace">堆叠追踪</summary>
+      <ul class="extension-error-overlay-stack-trace-list"></ul>
+    </details>
+  </div>
+</div>
+
+<div id="extension-error-overlay" class="page" style="max-height: 640px;">
+  <div class="close-button"></div>
+  <h1 class="extension-error-overlay-title"></h1>
+  <div class="content-area">
+    <div id="extension-error-overlay-code" class="extension-code"></div>
+  </div>
+  <div class="action-area">
+    <div class="action-area-right">
+      <div class="button-strip">
+        <button id="extension-error-overlay-dismiss" i18n-content="extensionErrorOverlayDone">完成</button>
+        <button id="extension-error-overlay-devtools-button" i18n-content="extensionErrorOverlayLaunchDevtools" hidden="">在开发者工具中查看</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--
+Copyright 2014 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be found
+in the LICENSE file.
+-->
+<div id="extension-options-overlay" class="page" style="max-height: 640px;">
+  <div class="close-button"></div>
+  <div id="extension-options-overlay-header">
+    <img id="extension-options-overlay-icon">
+    <h1 id="extension-options-overlay-title"></h1>
+  </div>
+  <div id="extension-options-overlay-guest"></div>
+</div>
+
+  <div id="pack-extension-overlay" class="page" style="max-height: 640px;">
+  <div class="close-button"></div>
+  <h1 i18n-content="packExtensionOverlay">打包扩展程序</h1>
+  <div id="cbd-content-area" class="content-area">
+    <div class="pack-extension-heading" i18n-content="packExtensionHeading">选择要打包的扩展程序的根目录。要更新某个扩展程序，还需选择要再次使用的私有密钥文件。</div>
+    <div class="pack-extension-text-boxes">
+      <label i18n-content="packExtensionRootDir" for="extension-root-dir">扩展程序根目录：</label>
+      <input class="pack-extension-text-area" id="extension-root-dir" type="text">
+      <button id="browse-extension-dir" i18n-content="packExtensionBrowseButton">浏览...</button>
+    </div>
+    <div class="pack-extension-text-boxes">
+      <label i18n-content="packExtensionPrivateKey" for="extension-private-key">私有密钥文件（可选）：</label>
+      <input class="pack-extension-text-area" id="extension-private-key" type="text">
+      <button id="browse-private-key" i18n-content="packExtensionBrowseButton">浏览...</button>
+    </div>
+  </div>
+  <div class="action-area">
+    <div class="action-area-right">
+      <div class="button-strip">
+        <button id="pack-extension-dismiss" i18n-content="cancel">取消</button>
+        <button id="pack-extension-commit" i18n-content="packExtensionCommit">打包扩展程序</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="alertOverlay" class="page" style="max-height: 640px;">
+  <h1 id="alertOverlayTitle"></h1>
+  <div class="content-area">
+    <div id="alertOverlayMessage"></div>
+  </div>
+  <div class="action-area">
+    <div class="button-strip">
+      <button id="alertOverlayCancel" type="reset"></button>
+      <button id="alertOverlayOk" type="submit"></button>
+    </div>
+  </div>
+</div>
+
+
+  <div id="drop-target-overlay" class="page" style="max-height: 640px;">
+    <div i18n-content="extensionSettingsInstallDropTarget">拖放以安装</div>
+  </div>
+</div>
+
+<div class="page dev-mode" id="extension-settings">
+  <header id="page-header" style="-webkit-transform: none;">
+    <h1 i18n-content="extensionSettings">扩展程序</h1>
+    <div id="header-controls" class="header-extras">
+      <div id="dev-toggle" class="checkbox">
+        <label>
+          <input id="toggle-dev-on" type="checkbox">
+          <span i18n-content="extensionSettingsDeveloperMode">开发者模式</span>
+        </label>
+      </div>
+    </div>
+    <div class="page-banner profile-is-supervised-banner">
+      <div class="page-banner-gradient">
+        <span class="page-banner-text" i18n-content="extensionSettingsSupervisedUser">受监管用户不能修改应用和扩展程序。</span>
+      </div>
+    </div>
+  </header>
+  <div id="dev-controls" style="height: 40px;">
+    <div class="button-container" aria-hidden="false">
+      <button id="load-unpacked" i18n-content="extensionSettingsLoadUnpackedButton" tabindex="0">加载正在开发的扩展程序...</button>
+      <button id="pack-extension" i18n-content="extensionSettingsPackButton" tabindex="0">打包扩展程序...</button>
+
+      <div id="dev-controls-spacer"></div>
+      <button id="update-extensions-now" i18n-content="extensionSettingsUpdateButton" tabindex="0">立即更新扩展程序</button>
+    </div>
+    <!-- NOTE: the code that shows/hides #dev-controls assumes the ADT promo is
+         directly underneath .button-container. -->
+    <div id="apps-developer-tools-promo" aria-hidden="true">
+      <img alt="">
+      <span id="apps-developer-tools-promo-text" i18n-values=".innerHTML:extensionSettingsAppsDevToolsPromoHTML">试试全新的<a target="_blank" href="https://chrome.google.com/webstore/detail/ohmmkhmmmpcnpikjeljgnaoabkaalbgc?hl=zh-CN" tabindex="-1">Chrome应用和扩展程序开发者工具</a>吧！</span>
+      <div id="apps-developer-tools-promo-close-wrapper">
+        <button i18n-values="title:extensionSettingsAppDevToolsPromoClose" class="custom-appearance close-button" title="关闭" tabindex="-1"></button>
+      </div>
+    </div>
+  </div>
+  
+<!--
+Copyright 2014 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be found
+in the LICENSE file.
+-->
+<div id="extension-load-error" hidden="">
+  <h2 i18n-content="extensionLoadErrorHeading">加载扩展程序时出错</h2>
+  <div id="extension-load-error-message">
+    <span i18n-content="extensionLoadErrorMessage">无法加载以下来源的扩展程序：</span>
+    <span id="extension-load-error-path"></span>
+  </div>
+  <span id="extension-load-error-reason"></span>
+  <div id="extension-load-error-manifest" class="extension-code"></div>
+  <div id="extension-load-error-controls">
+    <button id="extension-load-error-retry-button" i18n-content="extensionLoadErrorRetry">重试</button>
+    <button id="extension-load-error-give-up-button" i18n-content="extensionLoadErrorGiveUp">放弃</button>
+  </div>
+  <div id="extension-load-error-additional" hidden="">
+    <span i18n-content="extensionLoadAdditionalFailures">其他无法加载的扩展程序：</span>
+    <ul></ul>
+  </div>
+</div>
+
+  <div id="extension-settings-list" class=""><div class="extension-list-item-wrapper" id="ojijgddpmgblpahocddllbdcabnpaphk">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/ojijgddpmgblpahocddllbdcabnpaphk/48/1);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">Sport Event</span>
+          <span class="extension-version">1.0</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">This extension shows sports events' schedule</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="">选项</a>
+          <a class="site-link" target="_parent" hidden=""></a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> ojijgddpmgblpahocddllbdcabnpaphk</span>
+          </div>
+          <div class="load-path">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"> ~/git/chrome/Sports</a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper" id="gighmmpiobklfepjocnamgkkbiglidom">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/gighmmpiobklfepjocnamgkkbiglidom/48/1);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">AdBlock</span>
+          <span class="extension-version">2.31</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">最受欢迎的Chrome扩展，拥有超过4000万用户！屏蔽整个互联网上的广告。</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" href="chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/options/index.html">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/gighmmpiobklfepjocnamgkkbiglidom">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> gighmmpiobklfepjocnamgkkbiglidom</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0">背景页</a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper" id="ohmmkhmmmpcnpikjeljgnaoabkaalbgc">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/ohmmkhmmmpcnpikjeljgnaoabkaalbgc/48/1);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">Chrome Apps &amp; Extensions Developer Tool</span>
+          <span class="extension-version">0.1.18</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">Develop and Debug Chrome Apps &amp; Extensions.</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/ohmmkhmmmpcnpikjeljgnaoabkaalbgc">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> ohmmkhmmmpcnpikjeljgnaoabkaalbgc</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0">背景页 （无效）</a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox" disabled="">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper inactive-extension" id="bmagokdooijbeehmkpknfglimnifench">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/bmagokdooijbeehmkpknfglimnifench/48/1?grayscale=true);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">Firebug Lite for Google Chrome™</span>
+          <span class="extension-version">1.4.0.11967</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">Firebug Lite for Google Chrome, supported by the Firebug Working Group.</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/bmagokdooijbeehmkpknfglimnifench">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> bmagokdooijbeehmkpknfglimnifench</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper" id="aapocclcgogkmnckokdopfmhonfmgoek">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/aapocclcgogkmnckokdopfmhonfmgoek/48/1);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">Google 幻灯片</span>
+          <span class="extension-version">0.9</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">创建和编辑演示文稿</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/aapocclcgogkmnckokdopfmhonfmgoek">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> aapocclcgogkmnckokdopfmhonfmgoek</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper" id="aohghmighlieiainnegkcijnfilokake">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/aohghmighlieiainnegkcijnfilokake/48/1);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">Google 文档</span>
+          <span class="extension-version">0.9</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">创建和编辑文档</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/aohghmighlieiainnegkcijnfilokake">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> aohghmighlieiainnegkcijnfilokake</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper" id="felcaaldnbdncclmgdcncolpebgiejap">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/felcaaldnbdncclmgdcncolpebgiejap/48/1);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">Google 表格</span>
+          <span class="extension-version">1.1</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">创建和编辑电子表格</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/felcaaldnbdncclmgdcncolpebgiejap">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> felcaaldnbdncclmgdcncolpebgiejap</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper inactive-extension" id="iahnhfdhidomcpggpaimmmahffihkfnj">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/iahnhfdhidomcpggpaimmmahffihkfnj/48/1?grayscale=true);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">JSON-handle</span>
+          <span class="extension-version">0.0.2.2</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">It's a browser and editor for JSON document.You can get a beautiful view</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="chrome-extension://iahnhfdhidomcpggpaimmmahffihkfnj/options.html">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/iahnhfdhidomcpggpaimmmahffihkfnj">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> iahnhfdhidomcpggpaimmmahffihkfnj</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper inactive-extension" id="hdmbdioamgdkppmocchpkjhbpfmpjiei">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/hdmbdioamgdkppmocchpkjhbpfmpjiei/48/1?grayscale=true);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">jsonView jsonViewer json formatter 格式化</span>
+          <span class="extension-version">2.2.4</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">格式化、着色、美观、易读... jsonView处理了其他该类插件中文字符的bug,支持 json 和 jsonp 格式</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/hdmbdioamgdkppmocchpkjhbpfmpjiei">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> hdmbdioamgdkppmocchpkjhbpfmpjiei</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper inactive-extension" id="pdnfnkhpgegpcingjbfihlkjeighnddk">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/pdnfnkhpgegpcingjbfihlkjeighnddk/48/1?grayscale=true);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">Unblock Youku</span>
+          <span class="extension-version">2.7.6.5</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">帮助海外华人解除优酷、土豆等网站的访问限制（大陆用户无需安装此扩展）</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="chrome-extension://pdnfnkhpgegpcingjbfihlkjeighnddk/chrome/pages/options.html">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/pdnfnkhpgegpcingjbfihlkjeighnddk">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> pdnfnkhpgegpcingjbfihlkjeighnddk</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper inactive-extension" id="bfbmjmiodbnnpllbbbfblcplfjjepjdn">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/bfbmjmiodbnnpllbbbfblcplfjjepjdn/48/1?grayscale=true);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">关灯看视频</span>
+          <span class="extension-version">3.1.0.23</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">观看视频时自动调暗页面，让您仿佛置身于电影院中</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/options.html">选项</a>
+          <a class="site-link" target="_parent" href="http://www.turnoffthelights.com/">开发者网站</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> bfbmjmiodbnnpllbbbfblcplfjjepjdn</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div><div class="extension-list-item-wrapper inactive-extension" id="kpcjhgihkjbhglamhcjpaidnlniphdic">
+    <div class="extension-list-item" style="background-image: url(chrome://extension-icon/kpcjhgihkjbhglamhcjpaidnlniphdic/48/1?grayscale=true);">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title">迅雷、QQ旋风-链接自动转换(APP)</span>
+          <span class="extension-version">5.0.6</span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description">该插件是一款自动转换迅雷、QQ旋风、快车专用链的工具，能自动把网页里的专用链接替换为真实地址,使用你自己喜欢的下载方式来下载.让chrome支持专用链下载,是一款特实用的下载助手.</p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="" href="chrome-extension://kpcjhgihkjbhglamhcjpaidnlniphdic/options.html">选项</a>
+          <a class="site-link" target="_parent" href="https://chrome.google.com/webstore/detail/kpcjhgihkjbhglamhcjpaidnlniphdic">详细信息</a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"> kpcjhgihkjbhglamhcjpaidnlniphdic</span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox"><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      <button class="trash custom-appearance" title="从Chrome中移除…">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button></div>
+    </div>
+  </div></div>
+  <div id="no-extensions">
+    <span id="no-extensions-message" i18n-content="extensionSettingsNoExtensions">啊哦，您没有任何扩展程序 :-(</span>
+    <span id="suggest-gallery" class="more-extensions-link" i18n-values=".innerHTML:extensionSettingsSuggestGallery">要改为<a target="_blank" href="https://chrome.google.com/webstore/category/extensions?hl=zh-CN">浏览应用程序库</a>吗？</span>
+  </div>
+  <div id="footer-section">
+    <a target="_blank" class="more-extensions-link" i18n-values="href:extensionSettingsGetMoreExtensionsUrl" i18n-content="extensionSettingsGetMoreExtensions" href="https://chrome.google.com/webstore/category/extensions?hl=zh-CN">获取更多扩展程序</a>
+    <a is="action-link" class="extension-commands-config" i18n-content="extensionSettingsCommandsLink" tabindex="0">键盘快捷键</a>
+  </div>
+</div>
+
+<span id="font-measuring-div" class="">开发者模式</span>
+
+<div id="template-collection" hidden="">
+
+  <div class="extension-list-item-wrapper">
+    <div class="extension-list-item">
+      <div class="extension-details">
+        <div>
+          <span class="extension-title"></span>
+          <span class="extension-version"></span>
+        </div>
+        <p class="corrupt-install-message" i18n-content="extensionSettingsCorruptInstall" hidden="">此扩展程序可能已损坏。</p>
+        <p class="extension-description"></p>
+        <div class="action-links">
+          <a is="action-link" class="permissions-link" i18n-content="extensionSettingsPermissions" tabindex="0">权限</a>
+          <a is="action-link" class="options-button" i18n-content="extensionSettingsOptions" hidden="" tabindex="0">选项</a>
+          <a class="options-link" i18n-content="extensionSettingsOptions" hidden="">选项</a>
+          <a class="site-link" target="_parent" hidden=""></a>
+          <a is="action-link" class="launch-link" i18n-content="extensionSettingsLaunch" hidden="" tabindex="0">启动</a>
+          <a is="action-link" role="button" class="reload-link" i18n-content="extensionSettingsReloadUnpacked" hidden="" tabindex="0">重新加载 (⌘R)</a>
+        </div>
+        <div class="permanent-warnings">
+          <div class="extension-warnings" hidden="">
+            <span i18n-content="extensionSettingsWarningsTitle">警告：</span>
+            <ul></ul>
+          </div>
+          <div class="suspicious-install-message" hidden="">
+            <span i18n-content="extensionSettingsSuspiciousInstall">该扩展程序未列在 Chrome 网上应用店中，并可能是在您不知情的情况下添加的。</span>
+            <a target="_blank" class="learn-more-link" i18n-values="href:extensionSettingsSuspiciousInstallHelpUrl" i18n-content="extensionSettingsLearnMore" href="https://support.google.com/chrome/answer/2811969?p=ui_remove_non_cws_extensions&rd=1&hl=zh-CN">了解详情</a>
+          </div>
+        </div>
+        <div class="dependent-extensions-message" hidden="">
+          <span i18n-content="extensionSettingsDependentExtensions">需先安装此扩展程序，下列扩展程序才能正常使用：</span>
+          <ul></ul>
+        </div>
+        <div class="developer-extras">
+          <div>
+            <span i18n-content="extensionSettingsExtensionId">ID：</span>
+            <span class="extension-id"></span>
+          </div>
+          <div class="load-path" hidden="">
+            <span i18n-content="extensionSettingsExtensionPath">加载来源：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="managed-message" i18n-content="extensionSettingsPolicyControlled" hidden="">（此扩展程序受政策控制，无法删除或停用。）</div>
+          <div class="update-required-message" i18n-content="extensionSettingsUpdateRequiredBePolicy" hidden="">此扩展程序已过期并已根据企业政策停用。当有新版本时，它可能会自动启用。</div>
+          <div class="active-views" hidden="">
+            <span i18n-content="extensionSettingsInspectViews">检查视图：</span>
+            <a is="action-link" tabindex="0"></a>
+          </div>
+          <div class="manifest-errors" hidden=""></div>
+          <div class="runtime-errors" hidden=""></div>
+          <div class="install-warnings" hidden="">
+            <span i18n-content="extensionSettingsInstallWarnings">尝试安装此扩展程序时出现以下警告：</span>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="optional-controls">
+          <button class="show-button" i18n-content="extensionSettingsShowButton" hidden="">显示按钮</button>
+          <div class="checkbox">
+            <label class="incognito-control">
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableIncognito">在隐身模式下启用</span>
+            </label>
+          </div>
+          <div class="checkbox error-collection-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsEnableErrorCollection">收集各项错误</span>
+            </label>
+          </div>
+          <div class="checkbox all-urls-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowOnAllUrls">允许在所有网站上运行脚本</span>
+            </label>
+          </div>
+          <div class="checkbox file-access-control" hidden="">
+            <label>
+              <input type="checkbox">
+              <span i18n-content="extensionSettingsAllowFileAccess">允许访问文件网址</span>
+            </label>
+          </div>
+        </div>
+        <div class="butter-bar" i18n-values=".innerHTML:extensionSettingsIncognitoWarning" hidden=""><b>警告</b>：Google Chrome 浏览器无法阻止扩展程序记录您的浏览记录。要在隐身模式下停用此扩展程序，请取消选中此选项。</div>
+      </div>
+      <div class="enable-controls">
+        <a is="action-link" role="button" class="terminated-reload-link" i18n-content="extensionSettingsReloadTerminated" hidden="" tabindex="0">重新加载</a>
+        <a is="action-link" role="button" class="corrupted-repair-button" i18n-content="extensionSettingsRepairCorrupted" hidden="" tabindex="0">修复</a>
+        <div class="checkbox enable-checkbox" hidden=""><label>
+          <input type="checkbox">
+          <span class="enable-checkbox-text">
+            <span class="enabled-text" i18n-content="extensionSettingsEnabled">已启用</span>
+            <span class="enable-text" i18n-content="extensionSettingsEnable">启用</span>
+          </span>
+        </label>
+        <span class="location-text"></span>
+        <span class="blacklist-text"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <li class="dependent-list-item">
+    <span class="dep-extension-title"></span>
+    <ul>
+      <li>
+        <span i18n-content="extensionSettingsExtensionId">ID：</span>
+        <span class="dep-extension-id"></span>
+      </li>
+    </ul>
+  </li>
+
+
+  <button class="trash custom-appearance">
+  <span class="lid"></span>
+  <span class="can"></span>
+</button>
+
+  <!--
+Copyright 2013 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be found
+in the LICENSE file.
+-->
+<div id="template-collection-extension-error" hidden="">
+  <div class="extension-error-list">
+    <ul class="extension-error-list-contents"></ul>
+    <div class="extension-error-list-show-more">
+      <a is="action-link" i18n-content="extensionErrorsShowMore" hidden="" tabindex="0">显示更多…</a>
+    </div>
+  </div>
+  <div class="extension-error-metadata">
+    <span class="extension-error-message"></span>
+    <a is="action-link" class="extension-error-view-details" tabindex="0"></a>
+  </div>
+</div>
+
+
+</div>
+
+<script src="chrome://extensions-frame/strings.js"></script>
+<script src="chrome://resources/js/i18n_template2.js"></script>
+
+
+
+</body></html>
