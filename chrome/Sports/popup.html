@@ -40,7 +40,12 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
+    <script type="text/javascript" src="stringutil.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="jstorage.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="dateutil.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="parser.js" charset="UTF-8"></script>
     <script type="text/javascript" src="getevent.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="main.js" charset="UTF-8"></script>
     <!--script type="text/javascript">
     function show()
     {
@@ -52,7 +57,7 @@
   <body>
     <div id='body' width=500>
       <div id="event">waiting</div>
-      <button onclick=gethtml()>Refresh</button>
+      <button onclick=refresh()>Refresh</button>
       <img id="image-result" hidden>
     </div>
   </body>
