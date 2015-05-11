@@ -1,0 +1,19 @@
+* { padding: 0; margin: 0; text-decoration: none; border: none; }
+
+body { background: #cacaca url(http://inspectelement.com/demos/css3/realism/pattern.gif); text-align: center; margin-top: 25px; color: #5f5f5f; font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif; font-weight: normal; line-height: 22px; }
+a.logo { background: url(http://inspectelement.com/wp-content/themes/inspectelementv3/style/images/logoSprite.png) 0px 0px; width: 589px; text-indent: -9999px; height: 120px; display: block; margin: 0 auto; margin-bottom: 25px; }
+a.logo:hover { background: url(http://inspectelement.com/wp-content/themes/inspectelementv3/style/images/logoSprite.png) 0px -120px; -webkit-transform: rotate(-1deg) scale(1.02); -moz-transform: rotate(-1deg) scale(1.02); }
+a.logo:active { background: url(http://inspectelement.com/wp-content/themes/inspectelementv3/style/images/logoSprite.png) 0px -240px; border-bottom: none; -webkit-transform: rotate(-1deg) scale(1); -moz-transform: rotate(-1deg) scale(1); }
+
+a { margin-top: 30px; color: #22c3eb; text-align: center; }
+a.back, a.logo { display: block; }
+
+@font-face { font-family: Graublau; src: url(http://inspectelement.com/wp-content/themes/inspectelementv3_1/style/fonts/GraublauWeb.otf) format("opentype") }
+h1 { font-family: Graublau; margin: 45px 0 75px; font-weight: normal; }
+
+#carbonads-container { margin: 0 auto; margin-top: 80px; width: 300px; }
+#carbonads-container .carbonad-text, #carbonads-container span { text-align: left !important; }
+
+
+
+

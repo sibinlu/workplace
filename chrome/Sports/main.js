@@ -14,6 +14,7 @@ function refresh(){
 
 document.addEventListener('DOMContentLoaded', function() {
   todo();
+  document.getElementById('refresh').addEventListener('click',refresh);
 });
 
 //window.onload=todo;
