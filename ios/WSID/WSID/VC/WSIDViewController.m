@@ -97,4 +97,12 @@
     WSIDManagerViewController * ctrl = [[WSIDManagerViewController alloc] init];
     [self.navigationController pushViewController:ctrl animated:YES];
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    WSIDTask* task = [[WSIDTaskManager manager] nextToDo];
+    if (task) {
+        button.enabled = YES;
+    }
+}
 @end

@@ -1,12 +1,12 @@
 <!doctype html>
 <!--
- value "popup.html".
+ value "index.html". for options
  -->
 <html>
   <head>
-    <title>Sports</title>
+    <title>Sports Options</title>
     <style>
-      body {
+/*      body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
@@ -23,13 +23,17 @@
         font-size: 80%;
       }
       #event {
-        /* avoid an excessively wide status text */
         white-space: pre;
         text-overflow: ellipsis;
         overflow: hidden;
         max-width: 500px;
         min-width: 200px;
-      }
+      }*/
+    body {
+        font-family: anivers, helvetica, Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
     </style>
 
     <!--
@@ -37,34 +41,30 @@
       - Policy documentation[1] for details and explanation.
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
     <script type="text/javascript" src="stringutil.js" charset="UTF-8"></script>
     <script type="text/javascript" src="jstorage.js" charset="UTF-8"></script>
     <script type="text/javascript" src="dateutil.js" charset="UTF-8"></script>
     <script type="text/javascript" src="parser.js" charset="UTF-8"></script>
     <script type="text/javascript" src="getevent.js" charset="UTF-8"></script>
     <script type="text/javascript" src="main.js" charset="UTF-8"></script>
-    <link rel="stylesheet" type="text/css" href="colourbuttons.css" />
+    <link rel="stylesheet" type="text/css" href="btn1.css" />
+     -->
+
+    <link rel="stylesheet" type="text/css" href="../colourbuttons.css" />
   </head>
   <body>
-    <div id='body' width=500>
-      <div id="event">waiting</div>
-      <table border="0"><tr>
-          
-          <td><div class="colourbuttonblock">
-              <div class="colourbuttonheader"></div>
-              
-              <a class="button lightbg-purple clearfix"  id="refresh" ><span>Refresh</span></a>
-          </div></td>
-          
-          <td><div class="colourbuttonblock">
-              <div class="colourbuttonheader"></div>
-              
-              <a class="button lightbg-purple clearfix"  id="setting" ><span>Setting</span></a>
-          </div></td>
-          
-      </tr></table>
-    </div>
+    <!--div id='body' width=500>
+      <h1>wait</h1-->
+    <table border="0"><tr>
+    
+    <td><div class="colourbuttonblock">
+    <div class="colourbuttonheader"></div>
+
+    <a class="button lightbg-purple clearfix"  id="save" ><span>Save</span></a>
+    </div></td>
+    
+    </tr></table>
+
   </body>
 </html>
 

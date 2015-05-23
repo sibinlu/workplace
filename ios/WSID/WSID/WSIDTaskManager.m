@@ -127,7 +127,7 @@ static WSIDTaskManager * mgr;
 
 
 //GMT 2015-5-3 00:00 Sun
-#define BasicTS 1430644457
+#define BasicTS 1430611200
 -(BOOL) isANewDayLast:(int) last now:(int) now{
     int interval = 24*60*60;
     return (last-BasicTS)/interval != (now-BasicTS)/interval;

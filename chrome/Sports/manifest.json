@@ -1,4 +1,7 @@
 {
+  "background":{
+    "scripts": ["main.js"]
+   },
   "manifest_version": 2,
 
   "name": "Sport Event",
@@ -18,8 +21,10 @@
     "16": "img/icon16.png",
     "48": "img/icon48.png"
   },
+  "options_page": "options/index.html",
   "permissions": [
     "storage",
+    "tabs",
     "activeTab",
     "https://ajax.googleapis.com/",
     "http://www.zhibo8.cc/",
