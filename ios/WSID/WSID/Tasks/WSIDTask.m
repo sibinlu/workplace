@@ -17,8 +17,9 @@
 {
     self = [super init];
     if (self) {
-        self.taskName = name;
-        NSArray* array = [WSIDTaskManager readArrayFromFile:self.taskName];
+        self.taskid = name;
+        NSArray* array = [WSIDTaskManager readArrayFromFile:name];
+        self.taskName = [array objectAtIndex:0];
         self.taskFrequncy = [[array objectAtIndex:1] intValue];
         self.countTotal = [[array objectAtIndex:2] intValue];
         self.countFinished = [[array objectAtIndex:3] intValue];
@@ -71,6 +72,6 @@
 
 -(void)save;
 {
-    [WSIDTaskManager writeStringToFile:self.taskName content:[self description]];
+    [WSIDTaskManager writeStringToFile:self.taskid content:[self description]];
 }
 @end

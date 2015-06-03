@@ -14,6 +14,7 @@
 @interface WSIDTaskManager : NSObject
 @property (nonatomic,strong) NSMutableArray* tasks;
 @property (readonly) int lastUpdate;
+@property (readonly) float dataVersion;
 + (WSIDTaskManager*) manager;
 - (WSIDTask*) nextManager;
 - (void) reload;

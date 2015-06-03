@@ -14,7 +14,7 @@
 #import "WSIDRecitationViewController.h"
 #import "WSIDLearningViewController.h"
 #import "WSIDDictionaryViewController.h"
-
+#import "AppDelegate.h"
 
 
 //#define TopBarButton(__button,__rect,__title,__sel,__selEnd) \
@@ -33,6 +33,17 @@
 
 @implementation WSIDViewController
 
+-(id)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyAppActive) name:WSIDNotificationAppActive object:nil];
+    }
+    return self;
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -54,6 +65,7 @@
     [self.view addSubview:mButton];
     
     [[WSIDTaskManager manager] reload];
+    [self checkAnythingToDo];
     // Do any additional setup after loading the view.
 }
 
@@ -100,9 +112,20 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self checkAnythingToDo];
+}
+
+-(void)notifyAppActive{
+    [self checkAnythingToDo];
+}
+
+-(void) checkAnythingToDo{
     WSIDTask* task = [[WSIDTaskManager manager] nextToDo];
     if (task) {
         button.enabled = YES;
+    }
+    else{
+        button.enabled = NO;
     }
 }
 @end

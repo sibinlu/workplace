@@ -15,6 +15,7 @@
 
 
 @interface WSIDTask : NSObject
+@property (strong,nonatomic) NSString* taskid;
 @property (strong,nonatomic) NSString* taskName;
 @property (nonatomic) int taskFrequncy;
 @property (nonatomic) int countTotal;

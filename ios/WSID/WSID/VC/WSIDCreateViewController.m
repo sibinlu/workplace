@@ -137,6 +137,7 @@
     task.taskFrequncy = f;
     task.finishThisWeek = 0;
     task.finishToday = 0;
+    task.taskid = [NSString stringWithFormat:@"%d" ,(int)[[NSDate date] timeIntervalSince1970]];
     [[WSIDTaskManager manager].tasks addObject:task];
     [[WSIDTaskManager manager] save];
     [self back];

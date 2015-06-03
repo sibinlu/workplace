@@ -7,6 +7,7 @@
 //
 
 #import "WSIDTaskManager.h"
+#define CurrentDataVersion 1.0
 
 @implementation WSIDTaskManager
 
@@ -30,9 +31,10 @@ static WSIDTaskManager * mgr;
 {
     self.tasks = [NSMutableArray array];
     NSArray* array = [WSIDTaskManager readArrayFromFile:@"tm"];
-    int last = [[array objectAtIndex:0] intValue];
+    _dataVersion = [[array objectAtIndex:0] floatValue];
+    int last = [[array objectAtIndex:1] intValue];
     _lastUpdate = last;
-    for (int i =1; i<array.count; i+=2) {
+    for (int i =2; i<array.count; i+=2) {
         NSString* class = [array objectAtIndex:i];
         NSString* file = [array objectAtIndex:i+1];
         
@@ -45,9 +47,25 @@ static WSIDTaskManager * mgr;
         }else if ([class isEqualToString:NSStringFromClass([WSIDDictionaryTask class])]) {
             task =[[WSIDDictionaryTask alloc] initWithName:file];
         }
+        
         [self.tasks addObject:task];
     }
+    if (_dataVersion<1.0) {
+        [self dataVersionUpdate];
+    }
+    
     [self checkUpdate];
+}
+
+//Update this method to Update data
+-(void)dataVersionUpdate{
+    int tmp = [[NSDate date] timeIntervalSince1970] -100000;
+    for (WSIDTask* task in self.tasks) {
+        if ([task.taskid isEqualToString:task.taskName]) {
+            task.taskid = [NSString stringWithFormat:@"%d",tmp++ ];
+        }
+    }
+    [self save];
 }
 
 -(void)checkUpdate{
@@ -75,10 +93,10 @@ static WSIDTaskManager * mgr;
 - (void) save;{
     NSMutableString* tm = [[NSMutableString alloc] init];
     int ts = _lastUpdate;
-    [tm appendFormat:@"%d",ts];
+    [tm appendFormat:@"%.2f\t%d",CurrentDataVersion,ts];
     for (WSIDTask* task in self.tasks) {
         [task save];
-        [tm appendFormat:@"\t%@\t%@",NSStringFromClass([task class]), task.taskName ];
+        [tm appendFormat:@"\t%@\t%@",NSStringFromClass([task class]), task.taskid ];
     }
     [WSIDTaskManager writeStringToFile:@"tm" content:tm];
 }

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define WSIDNotificationAppActive @"WSIDNotificationAppActive" 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

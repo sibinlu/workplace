@@ -17,7 +17,11 @@
 @interface WSIDManagerViewController () <UITableViewDataSource,UITableViewDelegate>
 {
     UITableView* table;
+    int isOngoing;
+    UIButton* b_ongoing;
+    UIButton* b_completed;
 }
+@property (nonatomic,strong) NSMutableArray* currentTasks;
 @end
 
 @implementation WSIDManagerViewController
@@ -36,13 +40,29 @@
     titleLabel.font = [UIFont boldSystemFontOfSize:20];
     [self.view addSubview:titleLabel];
     
+    isOngoing = YES;
+    self.currentTasks = [NSMutableArray array];
+
+    TopBarButton(b_ongoing , CGRectMake(0, 70, self.view.frame.size.width/2, 40) , @"ONGOING" , clickOngoing);
+    [b_ongoing setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [b_ongoing setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [b_ongoing setTitleColor:[UIColor blackColor] forState:UIControlStateDisabled];
+    [self.view addSubview:b_ongoing];
     
-    table = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, self.view.frame.size.height-70) style:UITableViewStylePlain];
+
+    TopBarButton(b_completed , CGRectMake(self.view.frame.size.width/2, 70, self.view.frame.size.width/2, 40) , @"COMPLETED" , clickCompleted);
+    [b_completed setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [b_completed setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    [b_completed setTitleColor:[UIColor blackColor] forState:UIControlStateDisabled];
+    [self.view addSubview:b_completed];
+    
+    table = [[UITableView alloc] initWithFrame:CGRectMake(0, 70+40, self.view.frame.size.width, self.view.frame.size.height-70) style:UITableViewStylePlain];
     table.dataSource = self;
     table.delegate = self;
     table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     table.separatorColor = [UIColor blackColor];
     [self.view addSubview:table];
+    
     
 }
 
@@ -68,7 +88,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[WSIDTaskManager manager].tasks count];
+    return [self.currentTasks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -77,7 +97,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    WSIDTask* task = [[WSIDTaskManager manager].tasks objectAtIndex:indexPath.row];
+    WSIDTask* task = [self.currentTasks objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"  %@  %d/%d  %d,w%d,t%d",task.taskName,task.countFinished,task.countTotal , task.taskFrequncy, task.finishThisWeek , task.finishToday];
     return cell;
 }
@@ -89,7 +109,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[WSIDTaskManager manager].tasks removeObjectAtIndex:indexPath.row];
+        WSIDTask* task = [self.currentTasks objectAtIndex:indexPath.row];
+        [self.currentTasks removeObject:task];
+        [[WSIDTaskManager manager].tasks removeObject:task];
         [[WSIDTaskManager manager] save];
         // Delete the row from the data source.
         [table deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -101,7 +123,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    WSIDTask* task = [[WSIDTaskManager manager].tasks objectAtIndex:indexPath.row];
+    WSIDTask* task = [self.currentTasks objectAtIndex:indexPath.row];
     WSIDTaskViewController* ctrl = nil;
     if ([task isKindOfClass:[WSIDRecitationTask class]]) {
          ctrl = [[WSIDRecitationViewController alloc] initWithTask:task];
@@ -121,6 +143,35 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[WSIDTaskManager manager] checkUpdate];
+    [self reload];
+}
+
+-(void)reload{
+    b_completed.enabled = isOngoing;
+    b_ongoing.enabled = !isOngoing;
+    
+    [self.currentTasks removeAllObjects];
+    
+    for (WSIDTask* task in [WSIDTaskManager manager].tasks) {
+        int finish = (task.countTotal == task.countFinished);
+        if (isOngoing^finish) {
+            [self.currentTasks addObject:task];
+        }
+    }
+    //self.currentTasks = [WSIDTaskManager manager].tasks;
     [table reloadData];
 }
+
+-(void)clickCompleted{
+    isOngoing = NO;
+    
+    [self reload];
+}
+
+-(void)clickOngoing{
+    isOngoing = YES;
+    [self reload];
+
+}
+
 @end
