@@ -57,6 +57,8 @@
         h = scroll.frame.size.height;
     }
     scroll.contentSize = CGSizeMake(self.view.frame.size.width, h);
+    
+    [la becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {

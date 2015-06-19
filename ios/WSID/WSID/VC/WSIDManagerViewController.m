@@ -56,7 +56,7 @@
     [b_completed setTitleColor:[UIColor blackColor] forState:UIControlStateDisabled];
     [self.view addSubview:b_completed];
     
-    table = [[UITableView alloc] initWithFrame:CGRectMake(0, 70+40, self.view.frame.size.width, self.view.frame.size.height-70) style:UITableViewStylePlain];
+    table = [[UITableView alloc] initWithFrame:CGRectMake(0, 70+40, self.view.frame.size.width, self.view.frame.size.height-70-40) style:UITableViewStylePlain];
     table.dataSource = self;
     table.delegate = self;
     table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -173,5 +173,6 @@
     [self reload];
 
 }
+
 
 @end

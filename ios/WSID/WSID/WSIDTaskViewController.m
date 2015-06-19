@@ -7,6 +7,7 @@
 //
 
 #import "WSIDTaskViewController.h"
+#import "WSIDViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Prefix.h"
 @interface WSIDTaskViewController () <UITextViewDelegate>
@@ -57,8 +58,25 @@
 }
 
 -(void) finish{
+    hasDone = YES;
 }
 
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    if (motion == UIEventSubtypeMotionShake) {
+        if (hasDone) {
+            if ([self lastVCisWSID]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:WSIDJumpToNextTaskNotification object:nil];
+                
+            }
+            else{
+                [self back];
+            }
+        }
+    }
+}
 
+-(BOOL)lastVCisWSID{
+    return self.navigationController.viewControllers.count==2;
+}
 
 @end

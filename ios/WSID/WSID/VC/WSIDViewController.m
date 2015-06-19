@@ -37,6 +37,8 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyAppActive) name:WSIDNotificationAppActive object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyJumpToNext) name:WSIDJumpToNextTaskNotification object:nil];
+        
     }
     return self;
 }
@@ -126,6 +128,27 @@
     }
     else{
         button.enabled = NO;
+    }
+}
+
+-(void)notifyJumpToNext{
+    [self checkAnythingToDo];
+    if (button.enabled) {
+        [self clickWSID];
+        //clean navi
+        NSArray* r_array = self.navigationController.viewControllers;
+        NSArray* array = [NSArray arrayWithObjects:[r_array objectAtIndex:0],[r_array objectAtIndex:r_array.count-1], nil];
+        self.navigationController.viewControllers = array;
+        
+        
+    }
+}
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    if (motion == UIEventSubtypeMotionShake) {
+        if (button.enabled) {
+            [self clickWSID];
+        }
     }
 }
 @end

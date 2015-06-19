@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "WSIDViewController.h"
+#import "WSIDTaskManager.h"
 
 @interface AppDelegate ()
 
@@ -40,6 +41,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[WSIDTaskManager manager] reload];
     [[NSNotificationCenter defaultCenter] postNotificationName:WSIDNotificationAppActive object:nil];
 }
 
