@@ -140,7 +140,7 @@ static WSIDTaskManager * mgr;
         [fileManager createFileAtPath:filePath contents:nil attributes:nil];
         
     }
-    return [str writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    return [str writeToFile:filePath atomically:NO encoding:NSUTF8StringEncoding error:NULL];
 }
 
 
