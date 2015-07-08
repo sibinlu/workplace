@@ -8,8 +8,11 @@
 
 #import "WSIDLearningViewController.h"
 #import "Prefix.h"
+#import "WSIDFontMgr.h"
 @interface WSIDLearningViewController ()
-
+{
+    UILabel* questionLabel;
+}
 @end
 
 @implementation WSIDLearningViewController
@@ -19,12 +22,14 @@
     // Do any additional setup after loading the view.
     
     CGRect rect =CGRectMake(20, 100, self.view.frame.size.width-40, self.view.frame.size.height -200);
-    UILabel* questionLabel =nil;
     InfoLabel(questionLabel, rect, [self.task.questions objectAtIndex:0]);
-    questionLabel.font = [UIFont systemFontOfSize:28];
+    //questionLabel.font = [UIFont systemFontOfSize:28];
     questionLabel.textAlignment = NSTextAlignmentCenter;
+    questionLabel.numberOfLines = 10;
+    questionLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.view addSubview:questionLabel];
     
+    [self resetFont];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,4 +49,7 @@
     }
 }
 
+-(void)resetFont{
+    questionLabel.font = [[WSIDFontMgr shareMgr] fontForTopicText];
+}
 @end

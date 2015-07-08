@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "WSIDTask.h"
 #import "WSIDTaskManager.h"
-@interface WSIDTaskViewController : UIViewController
+#import "WSIDVC.h"
+@interface WSIDTaskViewController : WSIDVC
 {
     BOOL hasDone;
     UIButton* checkButton;

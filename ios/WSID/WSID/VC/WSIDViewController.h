@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WSIDVC.h"
 #define WSIDJumpToNextTaskNotification @"WSIDJumpToNextTaskNotification"
-@interface WSIDViewController : UIViewController
+@interface WSIDViewController : WSIDVC
 
 @end

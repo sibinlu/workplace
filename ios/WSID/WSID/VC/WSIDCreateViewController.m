@@ -11,6 +11,7 @@
 #import "WSIDTask.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Prefix.h"
+#import "WSIDFontMgr.h"
 @interface WSIDCreateViewController () <UITextFieldDelegate,UITextViewDelegate>
 {
     UITextField* name;
@@ -102,6 +103,8 @@
     a.autocorrectionType = UITextAutocorrectionTypeNo;
     [scroll addSubview:a];
 
+    [self supportGestureAdjustFont];
+    [self resetFont];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -156,4 +159,12 @@
     }
 }
 
+-(void)resetFont{
+    q.font = [[WSIDFontMgr shareMgr] fontForMainText];
+    a.font = [[WSIDFontMgr shareMgr] fontForMainText];
+}
+
+-(void)notifyFontChange:(NSObject*)sender{
+    [self resetFont];
+}
 @end

@@ -8,6 +8,7 @@
 
 #import "WSIDRecitationViewController.h"
 #import "Prefix.h"
+#import "WSIDFontMgr.h"
 
 @interface WSIDRecitationViewController () <UITextViewDelegate>
 {
@@ -59,6 +60,8 @@
     scroll.contentSize = CGSizeMake(self.view.frame.size.width, h);
     
     [la becomeFirstResponder];
+    
+    [self resetFont];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,5 +104,33 @@
     if (bottom>scroll.frame.size.height -216) {
         [scroll setContentOffset:CGPointMake(0,bottom - scroll.frame.size.height + 220) animated:YES];
     }
+}
+
+-(void)resetFont{
+    lq.font = [[WSIDFontMgr shareMgr] fontForMainText];
+    la.font = [[WSIDFontMgr shareMgr] fontForMainText];
+    li.font = [[WSIDFontMgr shareMgr] fontForMainText];
+    
+    NSString* q = [self.task.questions objectAtIndex:0];
+    CGRect rect = [q boundingRectWithSize:CGSizeMake(lq.bounds.size.width, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObject:lq.font forKey:NSFontAttributeName] context:nil];
+    
+    lq.frame = CGRectMake(20, 0, scroll.frame.size.width-40, rect.size.height);
+    
+    NSString* a = [self.task.answers objectAtIndex:0];
+    rect = [a boundingRectWithSize:CGSizeMake(la.bounds.size.width, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObject:la.font forKey:NSFontAttributeName] context:nil];
+    
+    la.frame = CGRectMake(20, lq.frame.size.height + 20, scroll.frame.size.width-40, rect.size.height+40);
+    li.frame = CGRectMake(20, la.frame.origin.y + la.frame.size.height + 20, scroll.frame.size.width-40, li.frame.size.height);
+    
+    int h = li.frame.origin.y + li.frame.size.height + 220;
+    if (h< scroll.frame.size.height) {
+        h = scroll.frame.size.height;
+    }
+    scroll.contentSize = CGSizeMake(self.view.frame.size.width, h);
+    
+//    int bottom = li.frame.origin.y + li.frame.size.height;
+//    if (bottom>scroll.frame.size.height) {
+//        [scroll setContentOffset:CGPointMake(0,bottom - scroll.frame.size.height) animated:YES];
+//    }
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WSIDManagerViewController : UIViewController
+#import "WSIDVC.h"
+@interface WSIDManagerViewController : WSIDVC
 
 @end

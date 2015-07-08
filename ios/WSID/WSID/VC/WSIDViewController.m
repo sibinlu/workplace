@@ -15,6 +15,7 @@
 #import "WSIDLearningViewController.h"
 #import "WSIDDictionaryViewController.h"
 #import "AppDelegate.h"
+#import "WSIDFontMgr.h"
 
 
 //#define TopBarButton(__button,__rect,__title,__sel,__selEnd) \
@@ -69,6 +70,9 @@
     [[WSIDTaskManager manager] reload];
     [self checkAnythingToDo];
     // Do any additional setup after loading the view.
+    
+    [self supportGestureAdjustFont];
+    [self resetFont];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -142,6 +146,10 @@
         
         
     }
+    else{
+        //Nothing to do
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
@@ -150,5 +158,13 @@
             [self clickWSID];
         }
     }
+}
+
+-(void)resetFont{
+    button.titleLabel.font = [[WSIDFontMgr shareMgr] fontForTopicText];
+}
+
+-(void)notifyFontChange:(NSObject*)sender{
+    [self resetFont];
 }
 @end

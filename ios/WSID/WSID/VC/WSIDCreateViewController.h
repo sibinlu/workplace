@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WSIDCreateViewController : UIViewController
+#import "WSIDVC.h"
+@interface WSIDCreateViewController : WSIDVC
 
 @end

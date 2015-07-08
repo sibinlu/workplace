@@ -10,6 +10,7 @@
 #import "WSIDViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Prefix.h"
+#import "WSIDFontMgr.h"
 @interface WSIDTaskViewController () <UITextViewDelegate>
 {
     UILabel* ln;
@@ -45,6 +46,8 @@
     ln.font = [UIFont boldSystemFontOfSize:20];
     [self.view addSubview:ln];
 
+    [self supportGestureAdjustFont];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,4 +82,11 @@
     return self.navigationController.viewControllers.count==2;
 }
 
+-(void)resetFont{
+    ln.font = [[WSIDFontMgr shareMgr] fontForTopicText];
+}
+
+-(void)notifyFontChange:(NSObject*)sender{
+    [self resetFont];
+}
 @end

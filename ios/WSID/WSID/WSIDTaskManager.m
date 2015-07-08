@@ -31,30 +31,38 @@ static WSIDTaskManager * mgr;
 {
     self.tasks = [NSMutableArray array];
     NSArray* array = [WSIDTaskManager readArrayFromFile:@"tm"];
-    _dataVersion = [[array objectAtIndex:0] floatValue];
-    int last = [[array objectAtIndex:1] intValue];
-    _lastUpdate = last;
-    for (int i =2; i<array.count; i+=2) {
-        NSString* class = [array objectAtIndex:i];
-        NSString* file = [array objectAtIndex:i+1];
-        
-        WSIDTask* task = nil;
-        
-        if ([class isEqualToString:NSStringFromClass([WSIDRecitationTask class])]) {
-            task =[[WSIDRecitationTask alloc] initWithName:file];
-        }else if ([class isEqualToString:NSStringFromClass([WSIDLearningTask class])]) {
-            task =[[WSIDLearningTask alloc] initWithName:file];
-        }else if ([class isEqualToString:NSStringFromClass([WSIDDictionaryTask class])]) {
-            task =[[WSIDDictionaryTask alloc] initWithName:file];
+    if (array==nil) {
+        //new device
+        _lastUpdate = [[NSDate date] timeIntervalSince1970];
+        _dataVersion =0;
+    }
+    else{
+        _dataVersion = [[array objectAtIndex:0] floatValue];
+        int last = [[array objectAtIndex:1] intValue];
+        _lastUpdate = last;
+        for (int i =2; i<array.count; i+=2) {
+            NSString* class = [array objectAtIndex:i];
+            NSString* file = [array objectAtIndex:i+1];
+            
+            WSIDTask* task = nil;
+            
+            if ([class isEqualToString:NSStringFromClass([WSIDRecitationTask class])]) {
+                task =[[WSIDRecitationTask alloc] initWithName:file];
+            }else if ([class isEqualToString:NSStringFromClass([WSIDLearningTask class])]) {
+                task =[[WSIDLearningTask alloc] initWithName:file];
+            }else if ([class isEqualToString:NSStringFromClass([WSIDDictionaryTask class])]) {
+                task =[[WSIDDictionaryTask alloc] initWithName:file];
+            }
+            
+            [self.tasks addObject:task];
+        }
+        if (_dataVersion<1.0) {
+            [self dataVersionUpdate];
         }
         
-        [self.tasks addObject:task];
-    }
-    if (_dataVersion<1.0) {
-        [self dataVersionUpdate];
+        [self checkUpdate];
     }
     
-    [self checkUpdate];
 }
 
 //Update this method to Update data
@@ -126,6 +134,9 @@ static WSIDTaskManager * mgr;
 +(NSArray*) readArrayFromFile:(NSString*) file;
 {
     NSString* str = [WSIDTaskManager readStringFromFile:file];
+    if (str == nil || [str isEqualToString:@""]) {
+        return nil;
+    }
     NSArray* array = [str componentsSeparatedByString:@"\t"];
     return array;
 }
