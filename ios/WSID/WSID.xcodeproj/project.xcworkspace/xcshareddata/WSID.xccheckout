@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>8FB63429-0D79-431B-A0DF-362BBE5E870D</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>WSID</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>D202D83DA43255AF0749EA31B35C790AD4C23604</key>
 		<string>https://github.com/sibinlu/workplace.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ios/WSID/WSID.xcodeproj/project.xcworkspace</string>
+	<string>ios/WSID/WSID.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>D202D83DA43255AF0749EA31B35C790AD4C23604</key>

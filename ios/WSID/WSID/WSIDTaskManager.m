@@ -112,7 +112,20 @@ static WSIDTaskManager * mgr;
 -(void)finishTask:(WSIDTask *)task{
     [self checkUpdate];
     //_lastUpdate = [[NSDate date] timeIntervalSince1970];
-    [task finish];
+    NSInteger index = [self.tasks indexOfObject:task];
+    if (index != NSNotFound) {
+        [task finish];
+    }
+    else{
+        //pointer has lost
+        //FIX_150727: after reload from springboard, the pointer of task may not in the tasks list
+        for (WSIDTask* atask in self.tasks) {
+            if ([atask.taskid isEqualToString:task.taskid]) {
+                [atask finish];
+            }
+        }
+    }
+    
 }
 
 
