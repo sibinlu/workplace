@@ -34,19 +34,23 @@ function build_lame()
 
 # bulid simulator version
 SDK="iPhoneSimulator"
-PLATFORM="i686"
+#PLATFORM="i686"
+#build_lame
+MIN_VERSION="7.0"
+PLATFORM="x86_64"
 build_lame
+
 
 # build device version
-SDK="iPhoneOS"
-PLATFORM="armv7"
-build_lame
+#SDK="iPhoneOS"
+#PLATFORM="armv7"
+#build_lame
 
-PLATFORM="armv7s"
-build_lame
+#PLATFORM="armv7s"
+#build_lame
 
-PLATFORM="arm64"
-build_lame
+#PLATFORM="arm64"
+#build_lame
 
 # remove old libmp3lame.a or lipo will failed
 OUTPUT_LIB=${OUTPUT_FOLDER}/libmp3lame.a

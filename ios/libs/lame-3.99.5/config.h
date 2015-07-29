@@ -65,7 +65,7 @@
 #endif
 
 /* system has 80 bit floats */
-/* #undef HAVE_IEEE854_FLOAT80 */
+#define HAVE_IEEE854_FLOAT80 1
 
 /* add ieee854_float80_t type */
 /* #undef HAVE_IEEE854_FLOAT80_T */
@@ -110,11 +110,11 @@
 
 /* Define to 1 if the type `long double' works and has more range or precision
    than `double'. */
-/* #undef HAVE_LONG_DOUBLE */
+#define HAVE_LONG_DOUBLE 1
 
 /* Define to 1 if the type `long double' works and has more range or precision
    than `double'. */
-/* #undef HAVE_LONG_DOUBLE_WIDER */
+#define HAVE_LONG_DOUBLE_WIDER 1
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
@@ -162,7 +162,7 @@
 #define HAVE_TERMCAP 1
 
 /* Define to 1 if you have the <termcap.h> header file. */
-/* #undef HAVE_TERMCAP_H */
+#define HAVE_TERMCAP_H 1
 
 /* add uint16_t type */
 #define HAVE_UINT16_T 1
@@ -194,7 +194,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have the <xmmintrin.h> header file. */
-/* #undef HAVE_XMMINTRIN_H */
+#define HAVE_XMMINTRIN_H 1
 
 /* Define as const if the declaration of iconv() needs const. */
 #define ICONV_CONST 

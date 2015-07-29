@@ -68,8 +68,8 @@ host_os=darwin9
 
 # The build system.
 build_alias=
-build=i686-apple-darwin13.4.0
-build_os=darwin13.4.0
+build=i686-apple-darwin14.4.0
+build_os=darwin14.4.0
 
 # A sed program that does not truncate output.
 SED="/usr/bin/sed"
@@ -138,7 +138,7 @@ lock_old_archive_extraction=yes
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS=" -Wall -arch arm64 -pipe -std=c99 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.2.sdk -miphoneos-version-min=6.0 -fno-common"
+LTCFLAGS=" -Wall -arch x86_64 -pipe -std=c99 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.4.sdk -miphoneos-version-min=7.0 -fno-common"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([BCDEGRST][BCDEGRST]*\\)[	 ][	 ]*_\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 _\\2 \\2/p'"
@@ -237,7 +237,7 @@ finish_eval=""
 hardcode_into_libs=no
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.0  /usr/local/lib"
+sys_lib_search_path_spec="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.1.0  /usr/local/lib"
 
 # Run-time system search path for libraries.
 sys_lib_dlsearch_path_spec="/usr/local/lib /lib /usr/lib"
