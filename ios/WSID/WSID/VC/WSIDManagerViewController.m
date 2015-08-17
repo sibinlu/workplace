@@ -28,7 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     
     UIButton* b1;
@@ -44,24 +43,25 @@
     self.currentTasks = [NSMutableArray array];
 
     TopBarButton(b_ongoing , CGRectMake(0, 70, self.view.frame.size.width/2, 40) , @"ONGOING" , clickOngoing);
-    [b_ongoing setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [b_ongoing setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    [b_ongoing setTitleColor:[UIColor blackColor] forState:UIControlStateDisabled];
+    [b_ongoing setTitleColor:SLGray forState:UIControlStateNormal];
+    [b_ongoing setTitleColor:SLBlack forState:UIControlStateHighlighted];
+    [b_ongoing setTitleColor:SLBlack forState:UIControlStateDisabled];
     [self.view addSubview:b_ongoing];
     
 
     TopBarButton(b_completed , CGRectMake(self.view.frame.size.width/2, 70, self.view.frame.size.width/2, 40) , @"COMPLETED" , clickCompleted);
-    [b_completed setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [b_completed setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    [b_completed setTitleColor:[UIColor blackColor] forState:UIControlStateDisabled];
+    [b_completed setTitleColor:SLGray forState:UIControlStateNormal];
+    [b_completed setTitleColor:SLBlack forState:UIControlStateHighlighted];
+    [b_completed setTitleColor:SLBlack forState:UIControlStateDisabled];
     [self.view addSubview:b_completed];
     
     table = [[UITableView alloc] initWithFrame:CGRectMake(0, 70+40, self.view.frame.size.width, self.view.frame.size.height-70-40) style:UITableViewStylePlain];
     table.dataSource = self;
     table.delegate = self;
     table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    table.separatorColor = [UIColor blackColor];
+    table.separatorColor = SLBlack;
     [self.view addSubview:table];
+    table.backgroundColor = SLBGColor;
     
     
 }
@@ -96,6 +96,8 @@
     UITableViewCell* cell = [table dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.textLabel.textColor = SLBlack;
+        cell.backgroundColor = SLBGColor;
     }
     WSIDTask* task = [self.currentTasks objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"  %@  %d/%d  %d,w%d,t%d",task.taskName,task.countFinished,task.countTotal , task.taskFrequncy, task.finishThisWeek , task.finishToday];

@@ -50,13 +50,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
     
     //UIButton* button;
     
     TopBarButton(button , CGRectMake(20, 100, self.view.frame.size.width-40, self.view.frame.size.height -200) , @"WHAT SHOULD I DO?" , clickWSID);
     [button setTitle:@"Nothing To Do" forState:UIControlStateDisabled];
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [button setTitleColor:SLGray forState:UIControlStateDisabled];
     [self.view addSubview:button];
     
     UIButton* addButton;

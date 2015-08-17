@@ -10,6 +10,11 @@
 #import "WSIDFontMgr.h"
 
 @implementation WSIDVC
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.view.backgroundColor = SLBGColor;
+}
+
 -(void)supportGestureAdjustFont;{
     UIPinchGestureRecognizer* gesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     [self.view addGestureRecognizer:gesture];

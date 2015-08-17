@@ -28,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
     
     scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, self.view.frame.size.height-70)];
     scroll.contentSize = CGSizeMake(self.view.frame.size.width, 340+150+220);
@@ -52,6 +51,8 @@
     name.returnKeyType = UIReturnKeyDone;
     name.delegate = self;
     [scroll addSubview:name];
+    name.textColor = SLBlack;
+    name.backgroundColor = SLBGColor;
     
     //// 50
     
@@ -65,6 +66,8 @@
     frequncy.returnKeyType = UIReturnKeyDone;
     [scroll addSubview:frequncy];
     frequncy.text = @"7";
+    frequncy.textColor = SLBlack;
+    frequncy.backgroundColor = SLBGColor;
     
     UILabel* tLabel;
     InfoLabel(tLabel, CGRectMake(20 +80 +10 +60+10, 50, 60,40),@"Total");
@@ -76,6 +79,8 @@
     total.returnKeyType = UIReturnKeyDone;
     [scroll addSubview:total];
     total.text = @"21";
+    total.textColor = SLBlack;
+    total.backgroundColor = SLBGColor;
     
     /// 100
     UILabel* qLabel;
@@ -85,10 +90,12 @@
     q = [[UITextView alloc] initWithFrame:CGRectMake(20, 140, self.view.frame.size.width-40, 150)];
     q.layer.borderWidth =1;
     q.delegate = self;
-    q.layer.borderColor =[[UIColor blackColor]CGColor];;
+    q.layer.borderColor =[SLBlack CGColor];;
     q.autocapitalizationType = UITextAutocapitalizationTypeNone;
     q.autocorrectionType = UITextAutocorrectionTypeNo;
     [scroll addSubview:q];
+    q.textColor = SLBlack;
+    q.backgroundColor = SLBGColor;
 
     //300
     UILabel* aLabel;
@@ -98,10 +105,12 @@
     a = [[UITextView alloc] initWithFrame:CGRectMake(20, 340, self.view.frame.size.width-40, 150)];
     a.layer.borderWidth =1;
     a.delegate = self;
-    a.layer.borderColor =[[UIColor blackColor]CGColor];;
+    a.layer.borderColor =[SLBlack CGColor];;
     a.autocapitalizationType = UITextAutocapitalizationTypeNone;
     a.autocorrectionType = UITextAutocorrectionTypeNo;
     [scroll addSubview:a];
+    a.textColor = SLBlack;
+    a.backgroundColor = SLBGColor;
 
     [self supportGestureAdjustFont];
     [self resetFont];

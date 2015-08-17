@@ -43,12 +43,14 @@
     
     la = [[UITextView alloc] initWithFrame:CGRectMake(20, lq.frame.size.height + 10, scroll.frame.size.width-40, 150)];
     la.layer.borderWidth = 1;
-    la.layer.borderColor = [[UIColor blackColor] CGColor];
+    la.layer.borderColor = [SLBlack CGColor];
     la.text = @"";
     la.delegate = self;
     la.autocapitalizationType = UITextAutocapitalizationTypeNone;
     la.autocorrectionType = UITextAutocorrectionTypeNo;
     [scroll addSubview:la];
+    la.backgroundColor = SLBGColor;
+    la.textColor = SLBlack;
     
     InfoLabel(li, CGRectMake(20, lq.frame.size.height + 10+160, scroll.frame.size.width-40, 100), @"");
     [scroll addSubview:li];

@@ -31,7 +31,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     
     UIButton* b1;
@@ -39,7 +38,7 @@
     [self.view addSubview:b1];
     
     TopBarButton(checkButton , CGRectMake(60, 20, 50, 50) , @"C" , finish);
-    [checkButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [checkButton setTitleColor:SLGray forState:UIControlStateDisabled];
     [self.view addSubview:checkButton];
 
     InfoLabel(ln, CGRectMake(160, 20, 150, 50), self.task.taskName);
