@@ -1,0 +1,2 @@
+crontab -e
+35	21	*	*	*	sh /Users/sibinlu/git/shell/spider/downloadloveq.sh

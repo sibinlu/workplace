@@ -1,3 +1,11 @@
+#!/bin/sh
+#Edit: Collect mp3s from ${weeks} weeks before
+weeks=1
+
+#Edit: Collect mp3s to ${dpath}; default is ${PWD}
+#dpath=""
+dpath="/Users/sibinlu/git/shell/spider/download/"
+
 user="sibinlu"
 password="ss60742"
 
@@ -5,12 +13,13 @@ prefix="http://dl.loveq.cn/live/program/"
 fprefix="LoveQ.cn_"
 finishlist="finishlist"
 
-weeks=2
 
 CURLUSER="-u "$user":"$password
 echo $CURLUSER
 
 # 0 : Success;   1 : Fail;      2: Fail & Delete;
+# $1 url  
+# $2 file to save
 function geturl()
 {
   if [ ! -n $1 ]; 
@@ -19,26 +28,27 @@ function geturl()
     return 1
   fi
 
-  local code=0
+  local code="0"
 
-  while [ $code -ne 416 ] #[ $code -ne 200 ] && [ $code -ne 206 ]
+  while [ "$code" != "416" ] #[ $code -ne 200 ] && [ $code -ne 206 ]
   do
-    code=$(curl -l -w %{http_code} --retry 1 -C - -O $CURLUSER $1)
-	if [ $code -eq 200 ] || [ $code -eq 206 ];
+    code=$(curl -l -w %{http_code} --retry 1 -C - -o $2 $CURLUSER $1)
+
+	if [ "$code" == "200" ] || [ "$code" == "206" ];
 	then
 		#echo 'Success: ' $code
 		echo 'Check File Integrity: ' $code
 		#return 0;
     else 
-		if [ $code -eq 416 ];
+		if [ "$code" == "416" ];
 		then
 			#echo 'File May Exist: ' $code
 			echo 'Check Sucess: ' $code
 			return 0;
 		else
-			if [ $code -eq 404 ];
+			if [ "$code" == "404" ];
 			then 
-				echo 'File not Exist on Server: ' $code
+			echo 'File not Exist on Server: ' $code
 				return 2;
 			else
 				echo 'Fail & Retry: ' $code
@@ -51,10 +61,11 @@ function geturl()
 function downloadmp3()
 {
 	#
-	if [ -f $finishlist ];
+	local finishfile=${dpath}${finishlist}
+	if  [ -f $finishfile ];
 	then 
 		#echo "list exist"
-		. $finishlist
+		. $finishfile
 	else
 		fl=()
 	fi
@@ -62,9 +73,11 @@ function downloadmp3()
 
 	local file=$fprefix$1"-"$2".mp3"
 
+	local url=$prefix$file
+	local filepath=${dpath}${file}
 
 	#
-	if [ -f $file ];
+	if [ -f ${filepath} ];
 	then 
 		#echo "file exist: " $file
 		local found=0
@@ -72,16 +85,16 @@ function downloadmp3()
 		do
 			if [[ $s == $file ]]
 			then
-				echo "No need to download " $file 
+			echo "No need to download " $file 
 				return;
 			fi
 		done
 	fi
 	#
 
-	local url=$prefix$file
-	echo "Start Downloading : " $url
-	geturl $url
+	echo "Start Downloading : " $url 
+	echo "To Path : " ${filepath} 
+	geturl $url $filepath
 
 	local ref=$?
 	if	[ $ref -eq 2 ]
@@ -92,7 +105,7 @@ function downloadmp3()
 	if [ $ref -eq 0 ]
 	then
 		fl+=( $file )
-		set | grep ^fl > $finishlist
+		set | grep ^fl > $finishfile
 	fi
 }
 
@@ -120,12 +133,27 @@ function downloadlastweek()
 #r=$?
 #echo "r= "$r
 #echo "result= " $result
+function main(){
+	for (( c=$weeks; c>=0; c-- ))
+	do
+		downloadlastweek $c
+	done
 
-for (( c=$weeks; c>=0; c-- ))
-do
-	downloadlastweek $c
-done
+	echo ""
+	w=$(date +%w)
+	echo "All Done! From " $(date -v-$[ $w + $weeks * 7 + 1 ]d +%F) "  to " $(date -v-$[ $w ]d +%F)
+}
 
-echo ""
-w=$(date +%w)
-echo "All Done! From " $(date -v-$[ $w + $weeks * 7 + 1 ]d +%F) "  to " $(date -v-$[ $w ]d +%F)
+function checkpath(){
+	test $dpath || dpath=${PWD}
+
+	[[ $dpath =~ .*/$ ]] || dpath=${dpath}"/"
+
+	echo "Downloading to " ${dpath}
+    
+	test -d ${dpath} || mkdir -p ${dpath}
+}
+
+checkpath
+#touch ${dpath}"touch"
+main
