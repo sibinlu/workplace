@@ -1,0 +1,1 @@
+/Applications/MacVim.app/Contents/MacOS/Vim -g -f -p $1
