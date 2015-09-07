@@ -28,4 +28,13 @@ __label.font = [UIFont systemFontOfSize:14]; \
 __label.numberOfLines = 0; \
 __label.lineBreakMode = NSLineBreakByWordWrapping; \
 
+
+//Random Task
+#define WSIDRandomEnable 1
+#define WSIDRandomPerNewDay 1
+#define WSIDRandomMinTask  5
+
 #endif
+
+
+

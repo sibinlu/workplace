@@ -8,6 +8,7 @@
 
 #import "WSIDTaskManager.h"
 #define CurrentDataVersion 1.0
+#import "SLRandom.h"
 
 @implementation WSIDTaskManager
 
@@ -92,6 +93,12 @@ static WSIDTaskManager * mgr;
             
         }
     }
+    
+    //random task
+    if (aNewDay && WSIDRandomEnable) {
+        [self addARandomTask];
+    }
+    
     if (aNewDay|| aNewWeek) {
         _lastUpdate = now;
         [self save];
@@ -109,6 +116,22 @@ static WSIDTaskManager * mgr;
     [WSIDTaskManager writeStringToFile:@"tm" content:tm];
 }
 
+
+-(void)addARandomTask{
+    NSMutableArray* finishedTasks = [NSMutableArray array];
+    for (WSIDTask* task in self.tasks) {
+        if (task.countFinished == task.countTotal) {
+            [finishedTasks addObject:task];
+        }
+    }
+    
+    NSInteger taskcount = finishedTasks.count;
+    if (taskcount>=WSIDRandomMinTask) {
+        NSInteger random = [SLRandom numberBetweenMin:0 andMax:taskcount];
+        WSIDTask* choosen = [finishedTasks objectAtIndex:random];
+        choosen.countTotal ++;
+    }
+}
 -(void)finishTask:(WSIDTask *)task{
     [self checkUpdate];
     //_lastUpdate = [[NSDate date] timeIntervalSince1970];

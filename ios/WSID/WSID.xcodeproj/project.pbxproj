@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D03863CD1B9D3E5800C10B71 /* SLRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = D03863CC1B9D3E5800C10B71 /* SLRandom.m */; };
 		D0A6940A1AF5359700FDA220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A694091AF5359700FDA220 /* main.m */; };
 		D0A6940D1AF5359700FDA220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6940C1AF5359700FDA220 /* AppDelegate.m */; };
 		D0A694151AF5359700FDA220 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A694141AF5359700FDA220 /* Images.xcassets */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D03863CB1B9D3E5800C10B71 /* SLRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLRandom.h; sourceTree = "<group>"; };
+		D03863CC1B9D3E5800C10B71 /* SLRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLRandom.m; sourceTree = "<group>"; };
 		D08B1CA81B81CB75007D88F6 /* SLColorSchema.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLColorSchema.h; sourceTree = "<group>"; };
 		D0A694041AF5359700FDA220 /* WSID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WSID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0A694081AF5359700FDA220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 			children = (
 				D0BD385C1B4C6A4300CCC9D2 /* alert */,
 				D08B1CA81B81CB75007D88F6 /* SLColorSchema.h */,
+				D03863CB1B9D3E5800C10B71 /* SLRandom.h */,
+				D03863CC1B9D3E5800C10B71 /* SLRandom.m */,
 			);
 			path = libs;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				D0A6942F1AF5367300FDA220 /* WSIDViewController.m in Sources */,
 				D0A6944E1AF53E8A00FDA220 /* WSIDLearningViewController.m in Sources */,
 				D0A694541AF540E500FDA220 /* WSIDTaskManager.m in Sources */,
+				D03863CD1B9D3E5800C10B71 /* SLRandom.m in Sources */,
 				D0BD385A1B4C69B800CCC9D2 /* WSIDFontMgr.m in Sources */,
 				D0A694331AF5384B00FDA220 /* WSIDTask.m in Sources */,
 				D0A694571AF54D2A00FDA220 /* WSIDCreateViewController.m in Sources */,
