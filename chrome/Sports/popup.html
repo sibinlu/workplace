@@ -2,35 +2,9 @@
 <!--
  value "popup.html".
  -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" style="min-width:400px;min-height:200px;">
   <head>
     <title>Sports</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      h1{
-        font-family:"Microsoft YaHei", Tahoma, sans-serif;
-        font-size: 100%;
-        font-weight:bold;
-        font-style:italic;
-        color:#1010ac;
-      }
-      h2{
-        
-        font-family:"Microsoft YaHei", Tahoma, sans-serif;
-        font-size: 80%;
-      }
-      #event {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 500px;
-        min-width: 200px;
-      }
-    </style>
 
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
@@ -38,6 +12,7 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
+    <script type="text/javascript" src="options/filter.js" charset="UTF-8"></script>
     <script type="text/javascript" src="stringutil.js" charset="UTF-8"></script>
     <script type="text/javascript" src="jstorage.js" charset="UTF-8"></script>
     <script type="text/javascript" src="dateutil.js" charset="UTF-8"></script>
@@ -45,6 +20,7 @@
     <script type="text/javascript" src="getevent.js" charset="UTF-8"></script>
     <script type="text/javascript" src="main.js" charset="UTF-8"></script>
     <link rel="stylesheet" type="text/css" href="colourbuttons.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
   </head>
   <body>
     <div id='body' width=500>

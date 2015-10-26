@@ -6,7 +6,7 @@
 
   "name": "Sport Event",
   "description": "This extension shows sports events' schedule",
-  "version": "1.0",
+  "version": "1.2",
 
   "browser_action": {
     "default_popup": "popup.html",
@@ -21,13 +21,14 @@
     "16": "img/icon16.png",
     "48": "img/icon48.png"
   },
-  "options_page": "options/index.html",
+  "options_page": "options/option.html",
   "permissions": [
     "storage",
     "tabs",
     "activeTab",
     "https://ajax.googleapis.com/",
     "http://www.zhibo8.cc/",
+	"http://www.azhibo.com/",
     "http://*.baidu.com/"
   ]
 }

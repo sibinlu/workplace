@@ -1,0 +1,35 @@
+body {
+	font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;
+}
+
+.livedate{
+	font-family:"Microsoft YaHei", Tahoma, sans-serif;
+	font-size: 100%;
+    font-weight:bold;
+    font-style:italic;
+    color:#1010ac;
+	display: block;
+	margin-bottom: 8px;
+}
+
+.eventlink{
+    outline:none;
+	text-decoration: none;
+	color: #0c0c0c;
+    font-family:"Microsoft YaHei", Tahoma, sans-serif;
+	font-size: 90%;
+	display: block;
+	margin-bottom: 6px;
+}
+
+.live{
+	color: #F3005F;
+}
+
+.jumpout:active{
+	color: #987cb9;
+}
+.jumpout{
+	cursor: pointer;
+}

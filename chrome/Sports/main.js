@@ -32,10 +32,15 @@ function setting(){
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  todo();
+	todo();
+	optionfilters();
+  
   document.getElementById('refresh').addEventListener('click',refresh);
   document.getElementById('setting').addEventListener('click',setting);
      
 });
+
+
+
 
 //window.onload=todo;

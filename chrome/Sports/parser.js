@@ -1,4 +1,4 @@
-var validStr=['NBA','巴塞罗那','皇家马德里','广州恒大','曼联','欧冠','斯诺克','网球']; 
+//var validStr=['NBA','巴塞罗那','皇家马德里','广州恒大','曼联','欧冠','斯诺克']; 
 
 function validEvent(str){
   for(var i =0; i<validStr.length;i++){
@@ -22,16 +22,85 @@ function renderEvent(arr) {
     var event = arr[i];
     var d = new Date(event[0]);
     var t = event[1];
+	var h = event[2];
     if (i==0 || (new Date(arr[i-1][0])).sbdate() != d.sbdate()){
-      result += '<h1>' + line + d.sbdate() + '</h1>' ;
+      result += '<span class=\"livedate\">' + line + d.sbdate() + '</span>' ;
     }
-    
-    result +=  '<h2>    '  + d.sbtime() + ' ' + t + '    </h2>'; 
+ 
+	var live = 'live';
+	var timeleft = d.getTime() - (new Date()).getTime();
+	if (timeleft > 10*60) live = '';
+    result +=  '<span class=\"eventlink '+live+'\">    '  + d.sbtime()  + 
+		' <span class=\"jumpout\" href=\"'+h + '\">' +t + '</span>    </span>'; 
   
   }
 
   document.getElementById("event").innerHTML = result;
 }
+
+//get date format for azhibo
+function dateazhibo(daytime){
+	var date = '';
+	var cdate = new Date();
+	var cm = cdate.getMonth();
+	var cy = cdate.getFullYear();
+
+    var indexm = daytime.indexOf('月');
+    var indexd = daytime.indexOf('日');
+	if (indexm != -1 && indexd > indexm) {
+		var m = daytime.substr(0,indexm);
+		var d = daytime.substr(indexm+1, indexd-indexm-1);
+		var y = cy;
+		if (cm == 12 && m == 1) y = cy +1;
+		date = y+'-'+m+'-'+d;
+	}
+
+	return date;
+}
+//x is the xml ; for azhibo spidersrc=1
+function parserazhibo(x){
+
+  if(!x){
+    console.log("not valid xml input");
+  }
+  //var filters = optionfilters();
+  //validStr = filters;
+  matchcont = x.getElementsByClassName('match-cont');
+  matchdays = matchcont[0].getElementsByClassName('day all');
+
+  var rarr = [];
+
+  for (var i=0; i<matchdays.length ;i++)
+  {
+    var box = matchdays[i];
+	// get date for day-box
+    var daytime = box.getElementsByClassName('title')[0].innerText.trim();
+	var date = dateazhibo(daytime);
+
+    var lis = box.getElementsByTagName('li');
+    //var d = new Date(t + ' GMT+0800');
+    for (var j=0; j<lis.length;j++){
+      var li = lis[j];
+      var lic = li.cloneNode(true);
+      var nameblock = lic.getElementsByClassName('name ')[0];
+      
+	  var title = nameblock.title.trim();
+	  var href = nameblock.href;
+
+	  var time = lic.getElementsByClassName('time ')[0].innerText.trim();
+      if(validEvent(title)){
+        
+		var d1 = new Date(date + ' ' + time + ' GMT+0800' );
+        var arr = [d1.getTime(),title,href];
+        rarr[rarr.length] = arr;
+      }               
+    }
+  }
+  saveCache(rarr);
+  showCache();
+  //renderEvent(rarr);
+}
+
 
 //x is the xml 
 function parserXML(x){
@@ -92,6 +161,19 @@ function showCache(){
   }
   console.log('cache load successfully');
   renderEvent(arr);
+
+  var links = document.getElementsByClassName("jumpout");
+    for (var i = 0; i < links.length; i++) {
+        (function () {
+            var ln = links[i];
+            var location = ln.href;
+            ln.onclick = function () {
+                chrome.tabs.create({active: true, url: location});
+            };
+        })();
+    }
+
+  window.resizeTo(800,800);
 }
 
 
