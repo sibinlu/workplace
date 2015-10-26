@@ -1,13 +1,16 @@
 function reset_options(){
 	document.getElementById('filter').value=defaultfilter;
+	document.getElementById('filterleague').value=defaultfilterleague;
 	save_options();
 }
 
 // Saves options to chrome.storage
 function save_options() {
   var filter = document.getElementById('filter').value;
+  var filterleague = document.getElementById('filterleague').value
   chrome.storage.sync.set({
-    filter: filter
+    filter: filter,
+	filterleague: filterleague
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -23,9 +26,11 @@ function save_options() {
 function restore_options() {
   // Use default value color = 'red' and likesColor = true.
   chrome.storage.sync.get({
-    filter: defaultfilter
+    filter: defaultfilter,
+	filterleague: defaultfilterleague
   }, function(items) {
     document.getElementById('filter').value = items.filter;
+    document.getElementById('filterleague').value = items.filterleague;
   });
 }
 document.addEventListener('DOMContentLoaded', function(){

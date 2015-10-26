@@ -10,9 +10,19 @@ function validEvent(str){
   return false;
 }
 
+function validLeague(str){
+  for(var i =0; i<validStrleague.length;i++){
+    var index = str.indexOf(validStrleague[i]);
+    if(index !=-1){
+      return true;
+    }
+  }
+  return false;
+}
 
 
-//arr of [date,title(str)]
+
+//arr of [date,title(str),href,league(str)]
 function renderEvent(arr) {
   var line = '<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1)" width="80%" color=#987cb9 SIZE=3>';
   var result = '';
@@ -22,7 +32,13 @@ function renderEvent(arr) {
     var event = arr[i];
     var d = new Date(event[0]);
     var t = event[1];
-	var h = event[2];
+	var h = "";
+	var l = "";
+	if(event.length>=4){
+		h = event[2];
+		l = event[3];
+	}
+	
     if (i==0 || (new Date(arr[i-1][0])).sbdate() != d.sbdate()){
       result += '<span class=\"livedate\">' + line + d.sbdate() + '</span>' ;
     }
@@ -30,8 +46,10 @@ function renderEvent(arr) {
 	var live = 'live';
 	var timeleft = d.getTime() - (new Date()).getTime();
 	if (timeleft > 10*60) live = '';
-    result +=  '<span class=\"eventlink '+live+'\">    '  + d.sbtime()  + 
-		' <span class=\"jumpout\" href=\"'+h + '\">' +t + '</span>    </span>'; 
+    result += '<p>'+ 
+		'<span class=\"eventlink '+live+'\">    '  + d.sbtime()  + ' </span>' + 
+		' <a class=\"jumpout eventlink '+ live +'\" href=\"'+h + '\">' +l +'  '+ t + '   </a>'
+		+ "</p>"; 
   
   }
 
@@ -63,8 +81,6 @@ function parserazhibo(x){
   if(!x){
     console.log("not valid xml input");
   }
-  //var filters = optionfilters();
-  //validStr = filters;
   matchcont = x.getElementsByClassName('match-cont');
   matchdays = matchcont[0].getElementsByClassName('day all');
 
@@ -83,15 +99,16 @@ function parserazhibo(x){
       var li = lis[j];
       var lic = li.cloneNode(true);
       var nameblock = lic.getElementsByClassName('name ')[0];
+      var league = lic.getElementsByClassName('league ')[0].innerText.trim();
       
 	  var title = nameblock.title.trim();
 	  var href = nameblock.href;
 
 	  var time = lic.getElementsByClassName('time ')[0].innerText.trim();
-      if(validEvent(title)){
+      if(validEvent(title) || validLeague(league)){
         
 		var d1 = new Date(date + ' ' + time + ' GMT+0800' );
-        var arr = [d1.getTime(),title,href];
+        var arr = [d1.getTime(),title,href,league];
         rarr[rarr.length] = arr;
       }               
     }
@@ -173,7 +190,6 @@ function showCache(){
         })();
     }
 
-  window.resizeTo(800,800);
 }
 
 
