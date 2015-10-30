@@ -8,8 +8,13 @@
 
 #include <iostream>
 
+#include "ReverseTable.hpp"
+#include "Array.hpp"
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
+    //ReverseTable::test();
+    Array::test();
     return 0;
 }

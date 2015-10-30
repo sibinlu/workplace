@@ -11,4 +11,25 @@
 
 #include <stdio.h>
 
+class ReverseTable {
+    ReverseTable(int size=5);
+
+    ~ReverseTable();
+    int** map;
+    
+    void resetTable();
+    void click(int i, int j);
+    void reverse(int i, int j);
+    int checkTable();
+    void solveTable();
+    
+public:
+    void printTable();
+    static int test();
+    int tableSize;
+};
+
+
+
+
 #endif /* ReverseTable_hpp */

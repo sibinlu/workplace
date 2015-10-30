@@ -1,0 +1,2 @@
+# edit all WSID* files into SL*
+for i in WSID*;do mv "$i" "SL${i#WSID}"; done

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D03675571BB30BE80018CE36 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D03675561BB30BE80018CE36 /* main.cpp */; };
+		D036755F1BB9D2F10018CE36 /* ReverseTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D036755D1BB9D2F10018CE36 /* ReverseTable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,10 @@
 /* Begin PBXFileReference section */
 		D03675531BB30BE80018CE36 /* TestCPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestCPP; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03675561BB30BE80018CE36 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D036755D1BB9D2F10018CE36 /* ReverseTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReverseTable.cpp; sourceTree = "<group>"; };
+		D036755E1BB9D2F10018CE36 /* ReverseTable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ReverseTable.hpp; sourceTree = "<group>"; };
+		D0FA63211BDFDA390067A7E9 /* Array */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Array; sourceTree = "<group>"; };
+		D0FA63221BDFDA390067A7E9 /* BinaryTree */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BinaryTree; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +62,11 @@
 		D03675551BB30BE80018CE36 /* TestCPP */ = {
 			isa = PBXGroup;
 			children = (
+				D0FA63211BDFDA390067A7E9 /* Array */,
+				D0FA63221BDFDA390067A7E9 /* BinaryTree */,
 				D03675561BB30BE80018CE36 /* main.cpp */,
+				D036755E1BB9D2F10018CE36 /* ReverseTable.hpp */,
+				D036755D1BB9D2F10018CE36 /* ReverseTable.cpp */,
 			);
 			path = TestCPP;
 			sourceTree = "<group>";
@@ -119,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D03675571BB30BE80018CE36 /* main.cpp in Sources */,
+				D036755F1BB9D2F10018CE36 /* ReverseTable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +245,7 @@
 				D036755C1BB30BE80018CE36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
