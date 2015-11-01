@@ -1,4 +1,0 @@
-catastrophe	32	1	catastrophe			
-divine	243	1	divine			
-impeccable	438	1	impeccable			
-flawless	636	1	flawless			

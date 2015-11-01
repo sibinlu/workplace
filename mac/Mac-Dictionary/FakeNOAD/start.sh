@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo "##Clean System Dictonary Caches"
 ./clean.sh
 echo "##Clean last builds"

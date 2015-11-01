@@ -1,0 +1,10 @@
+m_sldict_00001	大难临头猫星飞	Catastrophe;江湖有传猫星飞乃大凶之兆
+m_sldict_00002	天生丽质	Divine;除了形容女人 Candy Crush 也能看到
+m_sldict_00003	白璧无瑕	Flawless;和这个词语一样没有什么好说的
+m_sldict_00004	无可匹敌	Impeccable;形容女人霸道
+m_sldict_00005	我叫sowsow	来自Yorkshire的一只猫猫,喜欢Fireworks
+m_sldict_00006	路过的大肥猫	只有背影,速度太快,年龄性别不详
+m_sldict_00007	feline妙妙	喜欢强调自己的猫科属性又不好意思用中文说
+m_sldict_00008	喵喵	太通俗而不常用,不过总比没有好
+m_sldict_00009	毛绒绒的	很多东西都是毛绒绒的
+m_sldict_00010	喳喳喳	特有的声音,形容厕所放干冰或者水里放Vitamin C

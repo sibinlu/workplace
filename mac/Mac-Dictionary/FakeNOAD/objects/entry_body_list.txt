@@ -1,4 +1,0 @@
-m_sldict_00001	32
-m_sldict_00002	243
-m_sldict_00003	438
-m_sldict_00004	636

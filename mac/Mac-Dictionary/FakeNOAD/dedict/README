@@ -1,0 +1,8 @@
+# build the tools
+clang dedict.c -Wall -lz -o dedict
+clang strip.c -Wall -lz -o strip
+
+# decode the New Oxford American Dictionaray
+./dedict "New Oxford American Dictionary" | ./strip > dict.xml
+
+##use 10.10 version 
