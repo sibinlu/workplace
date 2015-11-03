@@ -2,52 +2,51 @@
 # Makefile
 #
 #
-#
 
-###########################
-
-# You need to edit these values.
+######################
 
 DICT_NAME		=	"New Oxford American Dictionary"
-DICT_SRC_PATH		=	NOAD.xml
-CSS_PATH		=	DefaultStyle.css
-PLIST_PATH		=	NOADInfo.plist
+DICT_SOURCE_DIR=dict
+DICT_DEV_KIT_OBJ_DIR=./objects
 
-DICT_BUILD_OPTS		=
-# Suppress adding supplementary key.
-# DICT_BUILD_OPTS		=	-s 0	# Suppress adding supplementary key.
+DATA_FAKE_RAW=data.txt
+DICT_SRC_PATH=$(DICT_SOURCE_DIR)/NOAD.xml
+DATA_FAKE_WORDLIST=$(DICT_DEV_KIT_OBJ_DIR)/NOAD_wotd_list.txt
 
-###########################
+DESTINATION_DICT_FOLDER	=	/Library/Dictionaries
+DESTINATION_DATA_FILE = "/System/Library/Graphics/Quartz Composer Plug-Ins/WOTD.plugin/Contents/Resources/NOAD_wotd_list.txt"
 
-# The DICT_BUILD_TOOL_DIR value is used also in "build_dict.sh" script.
-# You need to set it when you invoke the script directly.
+#####################
+all:  fakedata fakedict
+	
+fakedata:
+	@echo "####################"
+	@echo "Building the Fake Data"
+	mkdir -p $(DICT_DEV_KIT_OBJ_DIR)
+	./build_data.sh $(DATA_FAKE_RAW) $(DATA_FAKE_WORDLIST) $(DICT_SRC_PATH)
 
-#DICT_BUILD_TOOL_DIR	=	"/Developer/Extras/Dictionary Development Kit"
-DICT_BUILD_TOOL_DIR	=	"."
-DICT_BUILD_TOOL_BIN	=	"$(DICT_BUILD_TOOL_DIR)/bin"
+fakedict:
+	@echo "####################"
+	@echo "Building the Fake Dict"
+	make -C $(DICT_SOURCE_DIR)/ all
+	ditto --noextattr --norsrc $(DICT_SOURCE_DIR)/$(DICT_DEV_KIT_OBJ_DIR)/$(DICT_NAME).dictionary  $(DICT_DEV_KIT_OBJ_DIR)/$(DICT_NAME).dictionary
 
-###########################
+install: install_dict install_data
 
-DICT_DEV_KIT_OBJ_DIR	=	./objects
-export	DICT_DEV_KIT_OBJ_DIR
+install_dict:
+	@echo "####################"
+	@echo "Installing Dict into $(DESTINATION_DICT_FOLDER)".
+	$(DICT_SOURCE_DIR)/clean.sh
+	@echo "Permission Needed"
+	sudo ditto --noextattr --norsrc $(DICT_DEV_KIT_OBJ_DIR)/$(DICT_NAME).dictionary  $(DESTINATION_DICT_FOLDER)/$(DICT_NAME).dictionary
+	@echo "Done."
 
-DESTINATION_FOLDER	=	~/Library/Dictionaries
-RM			=	/bin/rm
+install_data:
+	@echo "####################"
+	@echo "Installing Data into $(DESTINATION_DATA_FILE)".
+	./install_data.sh $(DATA_FAKE_WORDLIST) $(DESTINATION_DATA_FILE)
 
-###########################
-
-all:
-	"$(DICT_BUILD_TOOL_BIN)/build_dict.sh" $(DICT_BUILD_OPTS) $(DICT_NAME) $(DICT_SRC_PATH) $(CSS_PATH) $(PLIST_PATH)
-	echo "Done."
-
-
-install:
-	echo "Installing into $(DESTINATION_FOLDER)".
-	mkdir -p $(DESTINATION_FOLDER)
-	ditto --noextattr --norsrc $(DICT_DEV_KIT_OBJ_DIR)/$(DICT_NAME).dictionary  $(DESTINATION_FOLDER)/$(DICT_NAME).dictionary
-	touch $(DESTINATION_FOLDER)
-	echo "Done."
-	echo "To test the new dictionary, try Dictionary.app."
 
 clean:
+	make -C $(DICT_SOURCE_DIR)/ clean
 	$(RM) -rf $(DICT_DEV_KIT_OBJ_DIR)
