@@ -13,7 +13,7 @@ if __name__ == "__main__":
   subject = '罗小黑更新了你敢信'
   to = 'sibinlu60742@163.com'
   to2 = 'cat.kawai.ng@gmail.com'
-  cachefile = 'cache.txt'
+  cachefile = '/Users/sibinlu/Documents/lxhcache.txt'
   
   print 'Fetching data...'
 
