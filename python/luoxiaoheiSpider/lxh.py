@@ -5,6 +5,7 @@ import sys
 import bs4
 import sb_email
 import lxhspider
+import logging
 
 
 if __name__ == "__main__":
@@ -14,6 +15,9 @@ if __name__ == "__main__":
   to = 'sibinlu60742@163.com'
   to2 = 'cat.kawai.ng@gmail.com'
   cachefile = '/Users/sibinlu/Documents/lxhcache.txt'
+  logfile = '/Users/sibinlu/Documents/lxhlog.txt'
+  logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.INFO)
+  
   
   print 'Fetching data...'
 
@@ -39,8 +43,10 @@ if __name__ == "__main__":
     f.truncate()
     f.write(title.encode('utf8'))
     print 'Series update and send email'
+    logging.info("Series update and send email")
   else:
     print 'No update'
+    logging.info('No update')
     
   f.close() 
 
