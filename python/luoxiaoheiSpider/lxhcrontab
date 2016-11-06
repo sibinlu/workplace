@@ -1,0 +1,2 @@
+#minute	hour	day	month	week	command
+0	22	*	*	*	python /Users/sibinlu/git/python/luoxiaoheiSpider/lxh.py

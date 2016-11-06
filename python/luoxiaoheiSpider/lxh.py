@@ -32,7 +32,7 @@ if __name__ == "__main__":
   f = open(cachefile,mode)
   cache = f.read().decode('utf8')
   if cache != title:
-    soup = bs4.BeautifulSoup('<h2>罗小黑更新了你敢信</h2><a href="" id="title"></a>')  
+    soup = bs4.BeautifulSoup('<h2>罗小黑更新了你敢信</h2><a href="" id="title"></a>', "html.parser")  
     soup.a['href'] = link
     soup.a.append(title)
     content = soup.prettify()

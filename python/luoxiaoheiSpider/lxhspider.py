@@ -15,7 +15,7 @@ def getsoup(url):
     print 'connection error'
     return None
   html = response.text
-  soup =  bs4.BeautifulSoup(html)
+  soup =  bs4.BeautifulSoup(html, "html.parser")
   return soup
 
 def getlatest():
