@@ -1,14 +1,25 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
+#LastUpdate: Nov 10 2016
 
-WantedTime = 20
-PlayMusic = 1
+
+WantedTime = 34
+PlayMusic = 0
 
 import math
 import gmspider as gs
 import datetime
 import time
 import os
+
+
+def cheer(m):
+    if PlayMusic:
+        os.system('afplay miao.m4a')
+    else:
+        dialog="if [ -n \"`which osascript`\" ]; then osascript -e 'display dialog \"Welcom Home Meow! ("+str(m) + " min"+ ")\"';  else echo 'osacript not found'; fi"
+        os.system(dialog)
+        #print "\a\a\a"
 
 def check(time):
     threshold = WantedTime * 60
@@ -17,10 +28,7 @@ def check(time):
     if time < threshold:
         print "Time to back home"
         print str(m) + " min"
-        if PlayMusic:
-            os.system('afplay miao.m4a')
-        else:
-            print "\a\a\a"
+        cheer(m) 
         return 1
     else:
         print "Let's wait..." + str(m) + " min"
