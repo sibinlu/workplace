@@ -1,0 +1,38 @@
+m_sldict_00001	大难临头猫星飞
+m_sldict_00002	天生丽质
+m_sldict_00003	白璧无瑕
+m_sldict_00004	无可匹敌
+m_sldict_00005	我叫sowsow
+m_sldict_00006	路过的大肥猫
+m_sldict_00007	feline妙妙
+m_sldict_00008	喵喵
+m_sldict_00009	毛绒绒的
+m_sldict_00010	喳喳喳
+m_sldict_00011	潜伏的小草莓
+m_sldict_00012	转三圈
+m_sldict_00013	Jacket
+m_sldict_00014	Rugby
+m_sldict_00015	What does the sow say?
+m_sldict_00016	amulet
+m_sldict_00017	Judy
+m_sldict_00018	Koxy
+m_sldict_00019	Single Car
+m_sldict_00001	大难临头猫星飞
+m_sldict_00002	天生丽质
+m_sldict_00003	白璧无瑕
+m_sldict_00004	无可匹敌
+m_sldict_00005	我叫sowsow
+m_sldict_00006	路过的大肥猫
+m_sldict_00007	feline妙妙
+m_sldict_00008	喵喵
+m_sldict_00009	毛绒绒的
+m_sldict_00010	喳喳喳
+m_sldict_00011	潜伏的小草莓
+m_sldict_00012	转三圈
+m_sldict_00013	Jacket
+m_sldict_00014	Rugby
+m_sldict_00015	What does the sow say?
+m_sldict_00016	amulet
+m_sldict_00017	Judy
+m_sldict_00018	Koxy
+m_sldict_00019	Single Car

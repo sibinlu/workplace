@@ -1,0 +1,15 @@
+##########
+Edit the file /System/Library/Graphics/Quartz\ Composer\ Plug-Ins/WOTD.plugin/Contents/Resources/NOAD_wotd_list.txt
+for your own words.
+
+#########
+You may face the SIC issue for Mac OS after 10.11
+SIC: System Integrity Protection
+
+To disable it temporarily:
+1. boot into recovery mode: restart your Mac and hold Command+R as it boots.
+2. Utility -> Terminal
+3. csrutil status
+4. Now Make it :  csrutil disable
+5. after you finished your task : csrutil enable
+

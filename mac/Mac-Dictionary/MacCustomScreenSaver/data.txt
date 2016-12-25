@@ -1,0 +1,19 @@
+m_sldict_00001	大难临头猫星飞	Catastrophe;江湖有传猫星飞乃大凶之兆
+m_sldict_00002	天生丽质	Divine;除了形容女人 Candy Crush 也能看到
+m_sldict_00003	白璧无瑕	Flawless;和这个词语一样没有什么好说的
+m_sldict_00004	无可匹敌	Impeccable;形容女人霸道
+m_sldict_00005	我叫sowsow	来自Yorkshire的一只猫猫,喜欢Fireworks
+m_sldict_00006	路过的大肥猫	只有背影,速度太快,年龄性别不详
+m_sldict_00007	feline妙妙	喜欢强调自己的猫科属性又不好意思用中文说
+m_sldict_00008	喵喵	太通俗而不常用,不过总比没有好
+m_sldict_00009	毛绒绒的	很多东西都是毛绒绒的
+m_sldict_00010	喳喳喳	特有的声音,形容厕所放干冰或者水里放Vitamin C
+m_sldict_00011	潜伏的小草莓	神秘的小草莓,有人说样子像蓝莓,但是不确定,因为见过的人都不在了
+m_sldict_00012	转三圈	和潜伏的小草莓的接头暗号
+m_sldict_00013	Jacket	一只被长期误认为是potato的wall nut.不过从他的表情可以看得出来他觉得这个误会是美丽的
+m_sldict_00014	Rugby	一只喜欢被扔来扔去的兔兔,来自<Oxford>,常年被神秘兔女欺压
+m_sldict_00015	What does the sow say?	Boar,Boar,Boar,Boar,Boar,Boar....
+m_sldict_00016	amulet	阿喵来,邪灵退散
+m_sldict_00017	Judy	来自Luxembourg的Elegent的小兔女,常年欺负Rugby,女性家权主义者
+m_sldict_00018	Koxy	一只见钱眼开的猫,但是智商不高,经常被空手套白狼,后来过于羞愧,就一直躲在箱子里,看到钱财会露个头
+m_sldict_00019	Single Car	Single car;Single car;Single in the Park;No one else; No car else;Only my car in the Park!(Tone by Jungle bell)

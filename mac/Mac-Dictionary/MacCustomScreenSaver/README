@@ -1,0 +1,46 @@
+Author: Sibin
+Last Update: Dec-24-2016
+Test Enviorment: Mac 10.12.2
+
+################################
+This Project can help you customize your word-of-the-day screen saver on your Mac. 
+
+################################
+!!Before You Use
+The Origin "NOAD_wotd_list.txt" and "New Oxford American Dictionary.dictionary" might be discarded. Please back up before your use.
+
+################################
+About SIC : System Integrity Protection"
+
+You may face the SIC issue for Mac OS after 10.11
+To disable it temporarily:
+1. boot into recovery mode: restart your Mac and hold Command+R as it boots.
+2. Utility -> Terminal"
+3. csrutil status"
+4. Now Make it :  csrutil disable"
+5. after you finished your task : csrutil enable"
+
+
+
+################################
+
+-----------Step 1---------------
+Disable SIC
+
+-----------Step 2---------------
+Edit your own data.txt in the form below:
+
+index \t Word \t Define of the Word
+
+-----------Step 3---------------
+make all
+
+-----------Step 4---------------
+make install
+
+-----------Step 5---------------
+Swith your system screen saver to "Word of The Day"
+
+-----------Step 6---------------
+Enjoy it!
+

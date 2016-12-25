@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:dictionary xmlns="http://www.w3.org/1999/xhtml" xmlns:d="http://www.apple.com/DTDs/DictionaryService-1.0.rng">
+	<d:entry id="m_sldict_00000" d:title="catastrophe" d:parental-control="1">
+		<d:index d:value="catastrophe"/>
+		<h1>catastrophe</h1>
+		<ul>
+			<li>cat1大难临头猫星飞</li>
+		</ul>
+	</d:entry>
+
+<!--d:entry xmlns:d="http://www.apple.com/DTDs/DictionaryService-1.0.rng" id="m_sldict_00001" d:title="abc" class="entry"-->
+	<d:entry id="m_sldict_00001" d:title="大难临头猫星飞" class="entry">
+		<d:index d:value="大难临头猫星飞"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">大难临头猫星飞</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00001.001" class="msDict t_core">
+					<span role="text" class="df">####大难临头猫星飞</span>
+				</span>
+		</span></span>
+	</d:entry>
+	
+	<d:entry id="m_sldict_00002" d:title="天生丽质" class="entry">
+		<d:index d:value="天生丽质"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">天生丽质</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00002.001" class="msDict t_core">
+					<span role="text" class="df">####天生丽质Divine</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00003" d:title="白璧无瑕" class="entry">
+		<d:index d:value="白璧无瑕"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">白璧无瑕</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00003.001" class="msDict t_core">
+					<span role="text" class="df">####白璧无瑕</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00004" d:title="无可匹敌" class="entry">
+		<d:index d:value="无可匹敌"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">无可匹敌</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00004.001" class="msDict t_core">
+					<span role="text" class="df">####无可匹敌</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00005" d:title="我叫sowsow" class="entry">
+		<d:index d:value="我叫sowsow"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">我叫sowsow</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00005.001" class="msDict t_core">
+					<span role="text" class="df">####我叫sowsow</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00006" d:title="路过的大肥猫" class="entry">
+		<d:index d:value="路过的大肥猫"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">路过的大肥猫</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00006.001" class="msDict t_core">
+					<span role="text" class="df">####路过的大肥猫</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00007" d:title="feline妙妙" class="entry">
+		<d:index d:value="feline妙妙"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">feline妙妙</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00007.001" class="msDict t_core">
+					<span role="text" class="df">####feline妙妙</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00008" d:title="喵喵" class="entry">
+		<d:index d:value="喵喵"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">喵喵</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00008.001" class="msDict t_core">
+					<span role="text" class="df">####喵喵</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00009" d:title="毛绒绒的" class="entry">
+		<d:index d:value="毛绒绒的"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">毛绒绒的</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00009.001" class="msDict t_core">
+					<span role="text" class="df">####毛绒绒的</span>
+				</span>
+		</span></span>
+	</d:entry>
+	<d:entry id="m_sldict_00010" d:title="喳喳喳" class="entry">
+		<d:index d:value="喳喳喳"/>
+		<span class="hg">
+			<span d:dhw="1" role="text" class="hw">喳喳喳</span>
+			<span class="gp tg_hg"> </span>
+		</span>
+		<span class="sg"><span class="se1">
+				<span d:abs="1" id="m_sldict_00010.001" class="msDict t_core">
+					<span role="text" class="df">####喳喳喳</span>
+				</span>
+		</span></span>
+	</d:entry>
+
+
+</d:dictionary>
+
