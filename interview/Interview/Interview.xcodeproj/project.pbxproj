@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D011E8891E5620E200F37DFC /* MinSumSubArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D011E8881E5620E200F37DFC /* MinSumSubArray.m */; };
 		D03C649E1D647A4F006A9E78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C649D1D647A4F006A9E78 /* main.m */; };
 		D03C64A61D647ABB006A9E78 /* IVBinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C64A51D647ABB006A9E78 /* IVBinaryTree.m */; };
 		D03C64A91D647AD4006A9E78 /* IVBinaryTreeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C64A81D647AD4006A9E78 /* IVBinaryTreeTest.m */; };
 		D03C64AC1D65DB5B006A9E78 /* NSMutableArrayIVCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C64AB1D65DB5B006A9E78 /* NSMutableArrayIVCategory.m */; };
+		D0557A311E257D33003A51C2 /* IVRecursionProblems.m in Sources */ = {isa = PBXBuildFile; fileRef = D0557A301E257D33003A51C2 /* IVRecursionProblems.m */; };
+		D0557A341E26D19E003A51C2 /* IVUber.m in Sources */ = {isa = PBXBuildFile; fileRef = D0557A331E26D19E003A51C2 /* IVUber.m */; };
+		D09105D21E2EDACB005D702F /* LockAndSeeSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D09105D11E2EDACB005D702F /* LockAndSeeSequence.m */; };
 		D0ACEED21D882BAE006A3DBE /* IVGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ACEED11D882BAE006A3DBE /* IVGCD.m */; };
+		D0E1C30C1E6F809E0050DA4E /* ExcelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E1C30B1E6F809E0050DA4E /* ExcelManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D011E8871E5620E200F37DFC /* MinSumSubArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinSumSubArray.h; sourceTree = "<group>"; };
+		D011E8881E5620E200F37DFC /* MinSumSubArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinSumSubArray.m; sourceTree = "<group>"; };
 		D03C649A1D647A4F006A9E78 /* Interview */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Interview; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03C649D1D647A4F006A9E78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D03C64A41D647ABB006A9E78 /* IVBinaryTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVBinaryTree.h; sourceTree = "<group>"; };
@@ -35,8 +42,16 @@
 		D03C64A81D647AD4006A9E78 /* IVBinaryTreeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVBinaryTreeTest.m; sourceTree = "<group>"; };
 		D03C64AA1D65DB5B006A9E78 /* NSMutableArrayIVCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMutableArrayIVCategory.h; sourceTree = "<group>"; };
 		D03C64AB1D65DB5B006A9E78 /* NSMutableArrayIVCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArrayIVCategory.m; sourceTree = "<group>"; };
+		D0557A2F1E257D33003A51C2 /* IVRecursionProblems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVRecursionProblems.h; sourceTree = "<group>"; };
+		D0557A301E257D33003A51C2 /* IVRecursionProblems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVRecursionProblems.m; sourceTree = "<group>"; };
+		D0557A321E26D19E003A51C2 /* IVUber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVUber.h; sourceTree = "<group>"; };
+		D0557A331E26D19E003A51C2 /* IVUber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVUber.m; sourceTree = "<group>"; };
+		D09105D01E2EDACB005D702F /* LockAndSeeSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockAndSeeSequence.h; sourceTree = "<group>"; };
+		D09105D11E2EDACB005D702F /* LockAndSeeSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockAndSeeSequence.m; sourceTree = "<group>"; };
 		D0ACEED01D882BAE006A3DBE /* IVGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVGCD.h; sourceTree = "<group>"; };
 		D0ACEED11D882BAE006A3DBE /* IVGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVGCD.m; sourceTree = "<group>"; };
+		D0E1C30A1E6F809E0050DA4E /* ExcelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcelManager.h; sourceTree = "<group>"; };
+		D0E1C30B1E6F809E0050DA4E /* ExcelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcelManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +93,16 @@
 				D03C64AB1D65DB5B006A9E78 /* NSMutableArrayIVCategory.m */,
 				D0ACEED01D882BAE006A3DBE /* IVGCD.h */,
 				D0ACEED11D882BAE006A3DBE /* IVGCD.m */,
+				D0557A2F1E257D33003A51C2 /* IVRecursionProblems.h */,
+				D0557A301E257D33003A51C2 /* IVRecursionProblems.m */,
+				D0557A321E26D19E003A51C2 /* IVUber.h */,
+				D0557A331E26D19E003A51C2 /* IVUber.m */,
+				D09105D01E2EDACB005D702F /* LockAndSeeSequence.h */,
+				D09105D11E2EDACB005D702F /* LockAndSeeSequence.m */,
+				D011E8871E5620E200F37DFC /* MinSumSubArray.h */,
+				D011E8881E5620E200F37DFC /* MinSumSubArray.m */,
+				D0E1C30A1E6F809E0050DA4E /* ExcelManager.h */,
+				D0E1C30B1E6F809E0050DA4E /* ExcelManager.m */,
 			);
 			path = Interview;
 			sourceTree = "<group>";
@@ -108,7 +133,7 @@
 		D03C64921D647A4F006A9E78 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = sibinlu;
 				TargetAttributes = {
 					D03C64991D647A4F006A9E78 = {
@@ -138,11 +163,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0557A341E26D19E003A51C2 /* IVUber.m in Sources */,
+				D09105D21E2EDACB005D702F /* LockAndSeeSequence.m in Sources */,
 				D03C64AC1D65DB5B006A9E78 /* NSMutableArrayIVCategory.m in Sources */,
 				D0ACEED21D882BAE006A3DBE /* IVGCD.m in Sources */,
+				D011E8891E5620E200F37DFC /* MinSumSubArray.m in Sources */,
+				D0E1C30C1E6F809E0050DA4E /* ExcelManager.m in Sources */,
 				D03C649E1D647A4F006A9E78 /* main.m in Sources */,
 				D03C64A91D647AD4006A9E78 /* IVBinaryTreeTest.m in Sources */,
 				D03C64A61D647ABB006A9E78 /* IVBinaryTree.m in Sources */,
+				D0557A311E257D33003A51C2 /* IVRecursionProblems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,8 +193,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -207,8 +239,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";

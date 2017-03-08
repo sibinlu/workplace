@@ -76,10 +76,10 @@
     pivot.value = newValue;
 }
 -(void) print;{
-    void (^block)(IVBinaryTreeNode*) = ^(IVBinaryTreeNode* node){
-        NSLog(@"%@",node.value);
-    };
-    
+//    void (^block)(IVBinaryTreeNode*) = ^(IVBinaryTreeNode* node){
+//        NSLog(@"%@",node.value);
+//    };
+//    
     
     [self GIPreOrderTranversalNRPrint];
     //[self postOrderTranversal:block];
@@ -89,7 +89,7 @@
     NSLog(@"%lu , %lu",[self leafCount],[self leafCountNR]);
 }
 
-#pragma mark - Tranversal Recurring
+#pragma mark - Tranversal Recursion
 -(void) preOrderTranversal:(void (^)(IVBinaryTreeNode* node))block;{
     if (!block) return;
     block(self);
@@ -122,7 +122,7 @@
 }
 
 
-#pragma mark - Tranversal Non-Recurring
+#pragma mark - Tranversal Non-Recursion
 -(void) preOrderTranversalNR:(void (^)(IVBinaryTreeNode* node))block{
     if (!block) return;
     NSMutableArray * stack = [NSMutableArray array];
