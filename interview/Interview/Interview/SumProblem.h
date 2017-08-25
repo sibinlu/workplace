@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface SumProblem : NSObject
-
+- (NSArray*) twoSumInArray:(NSArray*) array int:(int)target;
 @end

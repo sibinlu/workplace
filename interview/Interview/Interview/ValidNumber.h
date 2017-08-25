@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ValidNumber : NSObject
-
++ (BOOL) validNumber:(NSString*) str;
 @end

@@ -12,3 +12,4 @@
 #include <stdio.h>
 
 #endif /* DeletionDistance_h */
+int deletion_distance(char* str1, char* str2);

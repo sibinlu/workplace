@@ -12,19 +12,42 @@
 #import "IVRecursionProblems.h"
 #import "LockAndSeeSequence.h"
 #import "MinSumSubArray.h"
+#import "DeletionDistance.h"
+#import "SumProblem.h"
+#import "ValidNumber.h"
+//deletion distance between 2 str
+
+
+@interface Test : NSObject
+
+@end
+
+@implementation Test
+
+
+@end
+
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-//        NSLog(@"Hello, World!");
-        //[IVBinaryTreeTest Test1];
-        //[IVGCD testDispatchAsync];
         
-//        LockAndSeeSequence* s = [[LockAndSeeSequence alloc] init];
-//        NSString* result = [s nthLookAndSayNumber:5];
-//        NSLog(@"%@",result);
-        [MinSumSubArray MinSumSubArrayInArray:[NSArray arrayWithObject:[NSNumber numberWithInteger:100]]];
-        //[MinSumSubArray MinSumSubArrayInArray:[NSArray arrayWithObjects:[NSNumber numberWithInteger:-100],[NSNumber numberWithInteger:200],[NSNumber numberWithInteger:-3],[NSNumber numberWithInteger:-5],[NSNumber numberWithInteger:3],[NSNumber numberWithInteger:-1],nil]];
+        //SumProblem* p = [[SumProblem alloc] init];
+        //NSArray* testArray = @[[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:5],[NSNumber numberWithInt:9]];
+        //NSArray* result = [p twoSumInArray:testArray int:11];
+        //NSLog(@"%@",result);
+        bool b = [ValidNumber validNumber:@"+23e-4"];
+        NSLog(@"%d",b);
+        NSMutableArray* a = @[@"11",@"22"];
+    
+        NSString* ss= @"A";
+        
+        [ss characterAtIndex:0];
+        
+        NSMutableSet* s = [[NSMutableSet alloc] init];
+        //[s addObject:]
+        
+        
+        
     }
     return 0;
 }

@@ -16,6 +16,9 @@
 		D0557A341E26D19E003A51C2 /* IVUber.m in Sources */ = {isa = PBXBuildFile; fileRef = D0557A331E26D19E003A51C2 /* IVUber.m */; };
 		D09105D21E2EDACB005D702F /* LockAndSeeSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D09105D11E2EDACB005D702F /* LockAndSeeSequence.m */; };
 		D0ACEED21D882BAE006A3DBE /* IVGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ACEED11D882BAE006A3DBE /* IVGCD.m */; };
+		D0C0D6261E83943300F0C3C7 /* ValidNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C0D6251E83943300F0C3C7 /* ValidNumber.m */; };
+		D0CF6FD31E837C7C008CEC88 /* SumProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = D0CF6FD21E837C7C008CEC88 /* SumProblem.m */; };
+		D0DB253B1E70F92B001AA88E /* DeletionDistance.c in Sources */ = {isa = PBXBuildFile; fileRef = D0DB25391E70F92B001AA88E /* DeletionDistance.c */; };
 		D0E1C30C1E6F809E0050DA4E /* ExcelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E1C30B1E6F809E0050DA4E /* ExcelManager.m */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,12 @@
 		D09105D11E2EDACB005D702F /* LockAndSeeSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockAndSeeSequence.m; sourceTree = "<group>"; };
 		D0ACEED01D882BAE006A3DBE /* IVGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVGCD.h; sourceTree = "<group>"; };
 		D0ACEED11D882BAE006A3DBE /* IVGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IVGCD.m; sourceTree = "<group>"; };
+		D0C0D6241E83943300F0C3C7 /* ValidNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidNumber.h; sourceTree = "<group>"; };
+		D0C0D6251E83943300F0C3C7 /* ValidNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidNumber.m; sourceTree = "<group>"; };
+		D0CF6FD11E837C7C008CEC88 /* SumProblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SumProblem.h; sourceTree = "<group>"; };
+		D0CF6FD21E837C7C008CEC88 /* SumProblem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SumProblem.m; sourceTree = "<group>"; };
+		D0DB25391E70F92B001AA88E /* DeletionDistance.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DeletionDistance.c; sourceTree = "<group>"; };
+		D0DB253A1E70F92B001AA88E /* DeletionDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletionDistance.h; sourceTree = "<group>"; };
 		D0E1C30A1E6F809E0050DA4E /* ExcelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcelManager.h; sourceTree = "<group>"; };
 		D0E1C30B1E6F809E0050DA4E /* ExcelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExcelManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +112,12 @@
 				D011E8881E5620E200F37DFC /* MinSumSubArray.m */,
 				D0E1C30A1E6F809E0050DA4E /* ExcelManager.h */,
 				D0E1C30B1E6F809E0050DA4E /* ExcelManager.m */,
+				D0DB25391E70F92B001AA88E /* DeletionDistance.c */,
+				D0DB253A1E70F92B001AA88E /* DeletionDistance.h */,
+				D0CF6FD11E837C7C008CEC88 /* SumProblem.h */,
+				D0CF6FD21E837C7C008CEC88 /* SumProblem.m */,
+				D0C0D6241E83943300F0C3C7 /* ValidNumber.h */,
+				D0C0D6251E83943300F0C3C7 /* ValidNumber.m */,
 			);
 			path = Interview;
 			sourceTree = "<group>";
@@ -163,15 +178,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0C0D6261E83943300F0C3C7 /* ValidNumber.m in Sources */,
 				D0557A341E26D19E003A51C2 /* IVUber.m in Sources */,
 				D09105D21E2EDACB005D702F /* LockAndSeeSequence.m in Sources */,
 				D03C64AC1D65DB5B006A9E78 /* NSMutableArrayIVCategory.m in Sources */,
 				D0ACEED21D882BAE006A3DBE /* IVGCD.m in Sources */,
 				D011E8891E5620E200F37DFC /* MinSumSubArray.m in Sources */,
+				D0CF6FD31E837C7C008CEC88 /* SumProblem.m in Sources */,
 				D0E1C30C1E6F809E0050DA4E /* ExcelManager.m in Sources */,
 				D03C649E1D647A4F006A9E78 /* main.m in Sources */,
 				D03C64A91D647AD4006A9E78 /* IVBinaryTreeTest.m in Sources */,
 				D03C64A61D647ABB006A9E78 /* IVBinaryTree.m in Sources */,
+				D0DB253B1E70F92B001AA88E /* DeletionDistance.c in Sources */,
 				D0557A311E257D33003A51C2 /* IVRecursionProblems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
